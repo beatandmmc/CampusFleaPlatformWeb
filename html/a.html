@@ -1,0 +1,25 @@
+@Override
+	public Map uploadPicture(MultipartFile uploadFile) {
+		Map resultMap = new HashMap<>();
+		try {
+			String oldName = uploadFile.getOriginalFilename();
+			
+			String newName = oldName;
+			boolean result = uploadFile(FTP_ADDRESS, FTP_PORT, FTP_USERNAME, FTP_PASSWORD, 
+			uploadFile.getInputStream(), FTP_BASE_PATH, newName);
+			if(!result) {
+				resultMap.put("error", 1);
+				resultMap.put("message", "upload Fail");
+				return resultMap;
+			}
+			resultMap.put("error", 0);
+			resultMap.put("url", IMAGE_BASE_URL + "/" + newName);
+			return resultMap;
+		} catch (Exception e) {
+			e.printStackTrace();
+			resultMap.put("error", 1);
+			resultMap.put("message", "upload Fail");
+			return resultMap;
+		}
+	}
+	

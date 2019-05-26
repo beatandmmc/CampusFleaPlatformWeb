@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>发布商品</title>
+    <link rel="stylesheet" href="../css/font-awesome.min.css" />
+    <link rel="stylesheet" href="../css/userhome.css" />
+    <link rel="stylesheet" href="../css/user.css" />
+    <script type="text/javascript" src="../js/jquery.min.js"></script>
+    <!-- bootstrap -->
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <script type="text/javascript" src="../js/bootstrap.min.js"></script>
+
+    <style>
+        .container{padding-top:10px}
+
+    </style>
+</head>
+<body>
+<div class="pre-2" id="big_img">
+    <img src="http://findfun.oss-cn-shanghai.aliyuncs.com/images/head_loading.gif" class="jcrop-preview jcrop_preview_s">
+</div>
+<div id="cover" style="min-height: 639px;">
+    <div id="user_area">
+        <div id="home_header">
+            <a href="../html/homepage.html">
+                <h1 class="logo"></h1>
+            </a>
+            <a href="/user/home">
+                <div class="home"></div>
+            </a>
+        </div>
+        <!--
+            作者：hlk_1135@outlook.com
+            时间：2017-05-10
+            描述：左侧个人中心栏
+        -->
+        <div id="user_nav">
+            <div class="user_info">
+                <div class="head_img">
+                    <img src="../img/photo.jpg">
+                </div>
+                <div class="big_headimg">
+                    <img src="">
+                </div>
+                <span class="name">${cur_user.username}</span>
+                <span class="school">西安科技大学</span>
+                <span class="name">闲置数量：${cur_user.goodsNum}</span>
+            </div>
+            <div class="home_nav">
+                <ul>
+                    <li class="notice">
+                        <a href="#">
+                            <div></div>
+                            <span>我的消息</span>
+                            <strong></strong>
+                        </a>
+                    </li>
+
+                    <a href="">
+                        <li class="fri">
+                            <div></div>
+                            <span>关注列表</span>
+                            <strong></strong>
+                        </li>
+                    </a>
+                    <a href="/user/basic">
+                        <li class="set">
+                            <div></div>
+                            <span>个人设置</span>
+                            <strong></strong>
+                        </li>
+                    </a>
+                    <a href="/goods/publishGoods">
+                        <li class="store">
+                            <div></div>
+                            <span>发布物品</span>
+                            <strong></strong>
+                        </li>
+                    </a>
+                    <a href="/user/allGoods">
+                        <li class="second">
+                            <div></div>
+                            <span>我的闲置</span>
+                            <strong></strong>
+                        </li>
+                    </a>
+                </ul>
+            </div>
+        </div>
+        <!--
+	            作者：mmc
+	            描述：发布物品
+        -->
+        <div id="user_content">
+            <div class="basic">
+                <form action="" method="post" role="form" enctype="multipart/form-data" id="file-form">
+                    <h1 style="margin-left: 210px;">发布物品</h1><hr />
+                    <div class="changeinfo">
+                        <input type="text" name="userId" value="1507020102" id="userId"/>
+                        <span>物品名：</span>
+                        <input class="in_info" type="text" name="goodsName" id="goodsName" placeholder="请输入物品名" value="小米手环"/>
+                        <span>(*必填)</span>
+                    </div>
+                    <div class="changeinfo">
+                        <span>出售价格：</span>
+                        <input class="in_info" type="text" name="price" id="price" placeholder="请输入出售价格" value="90"/>
+                        <span>(*必填)</span>
+                    </div>
+                    <div class="changeinfo">
+                        <span>原价：</span>
+                        <input class="in_info" type="text" name="realPrice" id="realPrice" placeholder="请输入商品原价" value="150"/>
+                        <span id="checkphone">(*选填,请如实填写)</span>
+                    </div>
+                    <div class="changeinfo">
+                        <span>物品类别：</span>
+                        <select class="in_info" name="catelogId" id="catelogId">
+                            <option value="1">闲置数码</option>
+                            <option value="2">校园代步</option>
+                            <option value="3">电器日用</option>
+                            <option value="4">图书教材</option>
+                            <option value="5">美妆衣物</option>
+                            <option value="6">运动棋牌</option>
+                            <option value="7">票券小物</option>
+                        </select>
+                    </div>
+                    <div class="changeinfo" id="dir">
+                        <span>商品描述：</span>
+                        <div class="sha">
+                            <div class="publ">
+                                <div class="pub_con">
+                                    <div class="text_pu">
+                                        <input type="text" name="describle" id="describle" class="emoji-wysiwyg-editor" value="9成新，无损坏。"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <br />
+                    <hr />
+                    <div class="changeinfo">
+                        <span>商品图片：</span>
+                        <div class="show_pic">
+                            <div class="uploadImgBtn" id="uploadImgBtn">
+                                <input class="uploadImg" type="file" name="fileUploads" multiple>
+                            </div>
+                            <div class="pic_box">
+
+                            </div>
+                        </div>
+                    </div>
+                    <button type="button" class="setting-save" style="margin-top: 20px;background-color: blue;">发布物品</button>
+                </form>
+            </div>
+            <!--
+                描述：最右侧，可能认识的人
+            -->
+            <!--
+            <div class="recommend">
+                <div class="title">
+                    <span class="text">可能认识的人</span>
+                    <span class="change">换一组</span>
+                    <span class="underline"></span>
+                </div>
+                <ul>
+                    <li>
+                        <a href="" class="head_img">
+                            <img src="../img/photo1.jpg">
+                        </a>
+                        <span>Brudce</span>
+                        <div class="fa fa-plus-square"></div>
+                    </li>
+                    <li>
+                        <a href="" class="head_img">
+                            <img src="../img/photo2.jpg">
+                        </a>
+                        <span>Graham</span>
+                        <div class="fa fa-plus-square"></div>
+                    </li>
+                    <li>
+                        <a href="" class="head_img">
+                            <img src="../img/photo3.jpg">
+                        </a>
+                        <span>策马奔腾hly</span>
+                        <div class="fa fa-plus-square"></div>
+                    </li>
+                    <li>
+                        <a href="" class="head_img">
+                            <img src="../img/photo4.jpg">
+                        </a>
+                        <span>Danger-XFH</span>
+                        <div class="fa fa-plus-square"></div>
+                    </li>
+                    <li>
+                        <a href="" class="head_img">
+                            <img src="../img/photo5.jpg">
+                        </a>
+                        <span>Keithw</span>
+                        <div class="fa fa-plus-square"></div>
+                    </li>
+                </ul>
+            </div>
+             -->
+        </div>
+    </div>
+</div>
+<script>
+    var fileArr = [];
+var formData= new FormData();
+    $('#uploadImgBtn').on('change','.uploadImg',function(){
+        var $file = $(".uploadImg");  //所有input file组
+        var fileObj = $file[$file.length-2];  //获得最新添加了file的input
+        var files = fileObj.files;
+        var n = files.length;   //获取这个input的file数
+		if(n>0){
+            for(var i=0;i<n;i++){
+            	fileArr.push(files[i])
+            } 
+        }
+    });
+
+     $('.setting-save').click(function(event){
+     	console.log(fileArr);
+     	for(var i=0;i<fileArr.length;i++){
+     		formData.append('files',fileArr[i]);
+     	}
+     	//console.log($('#catelogId').val());
+    	formData.append("userId",$('#userId').val());
+    	formData.append("goodsName",$('#goodsName').val());
+    	formData.append("price",$('#price').val());
+    	formData.append("realPrice",$('#realPrice').val());
+    	formData.append("catelogId",$('#catelogId').val());
+    	formData.append("describle",$('#describle').val());
+          $.ajax({
+              url :'http://192.168.43.213:8080/goods/publishGoods',
+              type: 'POST',
+              async: true,
+              data:formData,
+              processData: false,
+              contentType: false,
+              success: function (data) {
+                  console.log(data);
+              },
+              error: function () {
+                  console.log("上传error")
+              }
+          });
+    });
+
+        $(document).ready(function () {
+            //为外面的盒子绑定一个点击事件
+            $("#uploadImgBtn").click(function () {
+                /*
+             1、先获取input标签
+             2、给input标签绑定change事件
+             3、把图片回显
+             */
+                //      1、先回去input标签
+            var $input = $(".uploadImg");
+            console.log($input);
+//      2、给input标签绑定change事件
+            $input.on("change" , function (){
+                //补充说明：因为我们给input标签设置multiple属性，因此一次可以上传多个文件
+                //获取选择图片的个数
+                var files = this.files;
+                var length = files.length;
+                console.log("选择了"+ length +"张图片");
+                //3、回显
+                $.each(files, function(key,value){
+                    //每次都只会遍历一个图片数据
+                    var div = document.createElement("div"),
+                            img = document.createElement("img"),
+                            del = document.createElement("div");
+                    div.className = "pic";
+                    del.className = 'del';
+                    del.innerText = 'X';
+                    var fr = new FileReader();
+                    fr.onload = function() {
+                        img.src = this.result;
+                        div.appendChild(img);
+                        div.appendChild(del);
+                        $('.pic_box')[0].appendChild(div);
+                    };
+                    fr.readAsDataURL(value);
+                });
+                //4、我们把当前input标签的id属性remove
+                $input.removeAttr("id");
+                //我们做个标记，再class中再添加一个类名就叫test
+                var newInput = '<input class="uploadImg test" type="file" name="fileUploads" multiple>';
+                $(this).after($(newInput));
+            });
+            })
+        });
+
+        //删除图片
+        $('.pic_box').on('click', '.del', function () {
+            var index= $(".pic").index($(this).parent());
+            console.log(index);
+            fileArr.splice(index,1);
+            $(this).parent().remove();
+            console.log(fileArr)
+        });
+
+
+
+</script>
+</body>
+</html>

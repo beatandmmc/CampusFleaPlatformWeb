@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" href="../css/font-awesome.min.css" />
+    <link rel="stylesheet" href="../css/userhome.css" />
+    <link rel="stylesheet" href="../css/user.css" />
+    <link rel="stylesheet" href="../css/publish.css" />
+    <script type="text/javascript" src="../js/jquery.min.js"></script>
+    <!-- bootstrap -->
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <script type="text/javascript" src="../js/bootstrap.min.js"></script>
+    <script src="../js/jquery.form.min.js"></script>
+	
+    <style>
+        .container{padding-top:10px}
+
+    </style>
+</head>
+<body>
+<form action="http://39.107.247.211:8080/CampusFleaPlatform_war/goods/publishGoods" method="post" role="form" enctype="multipart/form-data" id="file-form">
+    <h1 style="margin-left: 460px;">发布物品</h1><hr />
+    <div class="changeinfo">
+        <input type="text" name="userId" value="1507020102" id="userId"/>
+        <span>物品名：</span>
+        <input class="in_info" type="text" name="goodsName" id="goodsName" placeholder="请输入物品名" value="小米手环"/>
+        <span>(*必填)</span>
+    </div>
+    <div class="changeinfo">
+        <span>出售价格：</span>
+        <input class="in_info" type="text" name="price" id="price" placeholder="请输入出售价格" value="90"/>
+        <span>(*必填)</span>
+    </div>
+    <div class="changeinfo">
+        <span>原价：</span>
+        <input class="in_info" type="text" name="realPrice" id="realPrice" placeholder="请输入商品原价" value="150"/>
+        <span id="checkphone">(*选填,请如实填写)</span>
+    </div>
+    <div class="changeinfo">
+        <span>物品类别：</span>
+        <select class="in_info" name="catelogId" id="catelogId">
+            <option value="1">闲置数码</option>
+            <option value="2">校园代步</option>
+            <option value="3">电器日用</option>
+            <option value="4">图书教材</option>
+            <option value="5">美妆衣物</option>
+            <option value="6">运动棋牌</option>
+            <option value="7">票券小物</option>
+        </select>
+    </div>
+    <div class="changeinfo" id="dir">
+        <span>商品描述：</span>
+        <div class="sha">
+            <div class="publ">
+                <div class="pub_con">
+                    <div class="text_pu">
+                        <input type="text" name="describle" id="describle" class="emoji-wysiwyg-editor" value="9成新，无损坏。"/>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br />
+    <hr />
+    <div class="changeinfo">
+        <span>商品图片：</span>
+        <div class="show_pic">
+
+                <input class="fileUp" type="file" name="fileUploads">
+                <input class="fileUp" type="file" name="fileUploads">
+
+            <div class="pic_box">
+
+            </div>
+        </div>
+    </div>
+    <button type="button" class="setting-save" style="margin-top: 20px;background-color: blue;">发布物品</button>
+</form>
+<script>
+    var fileArr = [];
+
+    $('.setting-save').click(function(event){
+    //        event.preventDefault();
+//            var formData = new FormData($('#file-form')[0]);
+           var formData = new FormData();
+           var uploadFile = $('#excelFile').get(0).files[0];
+           var selectedId = $('#select').val();
+           formData.append("uploadFile",uploadFile);
+           formData.append("selectedId", selectedId);
+           console.log(uploadFile);
+
+            $.ajax({
+                url: 'http://39.107.247.211:8080/CampusFleaPlatform_war/goods/publishGoods',
+                //url :'http://192.168.43.213:8080/goods/catelog',
+                type: 'POST',
+                async: true,
+                dataType: 'jsonp',
+                jsonp: 'callback',
+                timeout: 5000,
+                data: formData,
+                traditional: true,
+                processData:false,
+                success: function (data) {
+                    console.log(data);
+                },
+                error: function () {
+                    console.log("上传error")
+                }
+            });
+        });
+//    $(function () {
+//        $("#file-form").on("submit",function () {    //表单提交时监听提交事件
+//            alert('kjkfvhfdv');
+//            $(this).ajaxSubmit(options);    //当前表单执行异步提交，optons 是配置提交时、提交后的相关选项
+//            return false;   //  必须返回false，才能跳到想要的页面
+//        })
+//    });
+//
+//    //配置 options 选项
+//    var options = {
+//        url: "http://39.107.247.211:8080/CampusFleaPlatform_war/goods/publishGoods",       //提交地址：默认是form的action,如果申明,则会覆盖
+//        type: "post",           //默认是form的method（get or post），如果申明，则会覆盖
+//        success: successFun,    //提交成功后的回调函数，即成功后可以定页面跳到哪里
+//        dataType: "json",       //接受服务端返回的类型
+//        clearForm: true,        //成功提交后，清除所有表单元素的值
+//        resetForm: true,        //成功提交后，重置所有表单元素的值
+//        timeout: 3000           //设置请求时间，超过该时间后，自动退出请求，单位(毫秒)
+//    };
+//    //设置提交成功后返回的页面
+//    function successFun(data,status) {
+//        alert('succ');     //提交表单后从后台接收到的返回来的数据，我保存到了msg里
+//        // $("#showForm").html("或者这里可以直接写想要显示的内容")
+//    }
+</script>
+</body>
+
+</html>

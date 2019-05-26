@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="content-language" content="en-US" />
+    <title></title>
+    <!--<link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">-->
+    <link rel="stylesheet" href="../css/bootstrap.min.css" />	
+    <link rel="stylesheet" href="../css/homepage.css"/>
+    <link rel="stylesheet" href="../css/font-awesome.min.css"  />
+</head>
+<body>
+<div class="container-fluid">
+    <!--顶部菜单栏-->
+    <div class="row xust-top">
+        <nav class="navbar navbar-fixed-top xust-header" role="navigation" id="xust-nav">
+            <div class="navbar-header">
+                <a class="navbar-brand xust-title" href="#"><i class="fa fa-home my-home" aria-hidden="true"></i><span class="xust">西科大 </span>二手工坊 <span class="xust-en">xust.market</span></a>
+            </div>
+            <div>
+                <form class="navbar-form navbar-left" role="search">
+                    <div class="form-group">
+                        	好物搜索<input type="text" class="form-control" placeholder="搜点啥吧！！！">
+                        <!--<button type="submit" class="btn btn-default">立即搜索</button>-->
+                    </div>
+                </form>
+            </div>
+            <!--<div class="navbar-right btn-download">-->
+               
+                <!--<button type="button" class="btn btn-primary">注册</button>-->
+            <!--</div>-->
+            <div class="navbar-right btn-download">
+            	<div class="done">
+            		<button type="button" class="btn btn-primary btn-info publish">我要发布</button>
+            
+                	<button class="btn btn-primary" id="username"><i class="fa fa-user-o"></i> <span id="user"></span></button> 
+                	<a class="exit" data-toggle="modal" href="#myModal">退出</a>
+            	</div>
+            	<div class="undone">
+            		<button id="userSubmit" type="button" class="btn btn-primary" hidden="hidden">登录</button>
+                	<button id="register" type="button" class="btn btn-primary" hidden="hidden">注册</button>
+            	</div>
+            	
+                
+             
+           
+            </div>
+         
+        </nav>
+    </div>
+    <!--导航&banner图-->
+    <div class="row xust-banner">
+        <div class="col-md-2.2 col-sm-3 col-xs-3 section-left">
+            <ul class="xust-nav">
+                <li class="row" catelogId="0">
+                    <div class="type-icon col-md-4 col-sm-4 col-xs-5"><img src="../img/index.png"></div>
+                    <div class="col-md-8 col-sm-7 col-xs-7 type-name">最新发布</div>
+                </li>
+                <li class="row" catelogId="1">
+                    <div class="type-icon col-md-4 col-sm-4 col-xs-5"><img src="../img/digital.png"></div>
+                    <div class="col-md-8 col-sm-7 col-xs-7 type-name">闲置数码</div>
+                </li>
+                <li class="row" catelogId="2">
+                    <div class="type-icon col-md-4 col-sm-4 col-xs-5"><img src="../img/ride.png"></div>
+                    <div class="col-md-8 col-sm-7 col-xs-7 type-name">校园代步</div>
+                </li>
+                <li class="row" catelogId="3">
+                    <div class="type-icon col-md-4 col-sm-4 col-xs-5"><img src="../img/commodity.png"></div>
+                    <div class="col-md-8 col-sm-7 col-xs-7 type-name">电器日用</div>
+                </li>
+                <li class="row" catelogId="4">
+                    <div class="type-icon col-md-4 col-sm-4 col-xs-5"><img src="../img/book.png"></div>
+                    <div class="col-md-8 col-sm-7 col-xs-7 type-name">图书教材</div>
+                </li>
+                <li class="row" catelogId="5">
+                    <div class="type-icon col-md-4 col-sm-4 col-xs-5"><img src="../img/makeup.png"></div>
+                    <div class="col-md-8 col-sm-7 col-xs-7 type-name">美妆衣物</div>
+                </li>
+                <li class="row" catelogId="6">
+                    <div class="type-icon col-md-4 col-sm-4 col-xs-5"><img src="../img/sport.png"></div>
+                    <div class="col-md-8 col-sm-7 col-xs-7 type-name">运动棋牌</div>
+                </li>
+                <li class="row" catelogId="7">
+                    <div class="type-icon col-md-4 col-sm-4 col-xs-5"><img src="../img/smallthing.png"></div>
+                    <div class="col-md-8 col-sm-7 col-xs-7 type-name">票券小物</div>
+                </li>
+            </ul>
+            <div class="about-us">
+                <a href="#">关于我们</a>-<a href="#">联系我们</a>
+                <p>DDXX工作室</p>
+            </div>
+        </div>
+        <div class="col-md-3 col-sm-3 col-xs-3"></div>
+        <div class="col-md-9 col-sm-9 col-xs-9">
+            <div class="wapper">
+                <div class="wel-box">
+                    <span class="welcome">欢迎来到西安科技大学校园二手交易平台~本平台销售各类闲置用品，希望同学们能够淘到需要的东西！</span>
+                </div>
+
+            </div>
+            <!-- 商品展示-->
+            <div class="row xust-section">
+                <div>
+                    <div class="row goods-title">
+                        <div class="col-md-2 goods-type">
+                            <h3 class="catelog-name" catelogid="0">最新发布</h3>
+                            <div class="line"></div>
+                        </div>
+                    </div>
+                    <div class="row goods-list">
+                        <!-- 最新发布商品展示区-->
+
+                    </div>
+                    <div class="over">我是有底线的~</div>
+                </div>
+
+
+            </div>
+        </div>
+
+
+    </div>
+
+
+</div>
+<!-- 模态框-->
+<div id="myModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- 模态内容 -->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">账号退出</h4>
+            </div>
+            <div class="modal-body">
+                <p>您确定要登出该账号吗？</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                <button type="button" id="quit" class="btn btn-primary">退出</button>
+            </div>
+        </div>
+
+    </div>
+</div>
+<script src="../js/jquery.min.js"></script>
+<script src="../js/jquery.cookie.js"></script>
+<script src="../js/bootstrap.min.js"></script>
+<script src="../js/template-web.js"></script>
+<script src="../js/homepage.js"></script>
+<script id="type_goods_temp" type="text/html">
+    {{each model}}
+    <div class="col-md-3 col-sm-3 col-xs-6">
+        <div class="card col-md-11 col-sm-11 col-xs-11" id="hha" onclick="getItemDetail($(this).attr('data-id'))" data-id={{$value.id}}>
+            <div class="card-image">
+               <!--<img id="src" src="{../img/goods.jpg}" />-->
+               <img src="{{$value.imgUrl.split(";")[0]}}" />
+            </div>
+            <div class="card-content">
+                <h4 class="name" title={{$value.name}}>{{$value.name}}</h4>
+                <div class="row">
+                    <span class="col-md-5 col-xs-5 col-sm-5 price">{{$value.price}}</span>
+                    <span class="col-md-7 col-xs-7 col-sm-7 time text-right">{{$value.startTime}}</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    {{/each}}
+</script>
+<script>
+//    function callback_fn(data){
+//        alert(data + ":2");
+//    }
+//    $.ajax({
+//        type:"get",
+//        dataType:"jsonp",
+//        url:"http://192.168.43.213:8080/goods/test",
+//        jsonpCallback:"callback_fn",
+//        success:function(data) {
+//            console.log(data + ":1");
+//        },
+//        error:function(){
+//          console.log("error")
+//        }
+//    });
+</script>
+</body>
+</html>

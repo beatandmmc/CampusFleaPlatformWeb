@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>密码登录</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+        <meta name="format-detection" content="telephone=no" />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="black">
+        <link rel="stylesheet" type="text/css" href="../css/common.css" />
+		<link rel="stylesheet" type="text/css" href="../css/denglu.css" />
+		<script src="../js/vue.js"></script>
+	</head>
+	<body>
+	<div>
+		<section id="vue-user">
+			<p class="p1">用户登录</p>
+			<form>
+				<div>
+					<label for="username">手机号</label>
+					<input type="text" name="user" id="username" v-on:blur="onBlur"/>
+				</div>
+				<div id="prompt">请输入正确的手机号</div>
+				<div class="download_psw">
+					<label for="password">密码</label>
+					<input type="password" name="password" id="password" placeholder="请输入密码" />
+				</div>
+				<div class="download_code">
+					<label for="code">验证码 </label><br>
+					<input type="text"  name="number" id="code"/>
+					<input type="button" value="获取验证码" id="id" v-on:click="getid"/>
+				</div>
+				<p><input type="button" id="btn-number" value="验证码登录" v-on:click="change" class="psw_now"></p>
+				<input type="button" id="sub" value="登录" name="submit"  v-on:click="submit"/>
+			</form>
+			<footer>
+				<input type="button" id="btn-forget" value="忘记密码？"/>1
+				<span class="shu">|</span>
+				<input type="button" value=" 我要注册" id="btn-register"/>
+			</footer>
+		</section>
+	</div>
+
+		<script src="../js/jquery.min.js"></script>
+		<script src="../js/jquery.cookie.js"></script>
+		<script src="../js/denglu.js"></script>
+		
+	</body>
+</html>

@@ -1,0 +1,208 @@
+body{
+	width: 100%;
+	height: 13.34rem;
+    background-image:url(../img/bg_dl.jpg);
+    background-size: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+   }
+
+section{
+	width:80%;
+	height:9rem ;
+	display: flex;
+	flex-flow: wrap;
+	justify-content: center;
+	align-content:space-between;
+	background: rgba(0,0,0,0.5);
+}
+
+.p1{
+	 width: 100%;
+	 height: 1.2rem;
+	 font-size: 0.8rem;
+	 line-height: 1.2rem;
+	 text-align: center;
+	 color: #FFFFFF;
+}
+
+form{
+	width: 90%;
+	height: 5.5rem;
+	display: flex;
+	flex-wrap: wrap;
+	align-content: space-around;
+	justify-content: flex-start;
+
+}
+
+label{
+	height: 0.3rem;
+	font-size: 0.3rem;
+	color: #FFFFFF;
+	}
+
+#username,#password{
+	width: 100%;
+	height: 0.8rem;
+    background-color: transparent;
+    border:none;
+    color: #FFFFFF;
+	font-size: 0.4rem;
+	border-bottom: #b5b5b5 0.03rem solid;
+	text-align: center;
+	outline: none;
+}
+
+.shu{
+	color: #FFFFFF;
+	font-size: 0.3rem;
+}
+
+#prompt{
+	 display: none; 
+	 color: #ed8639; 
+	 font-size: 0.25rem; 
+	 padding-left: 25%;
+}
+
+form p{
+	width: 100%;
+	text-align: end;
+	height: 1rem;
+	line-height: 1rem;
+}
+
+#btn-number{
+	color: #FFFFFF;
+	font-size:0.3rem;
+	border: none;
+	background-color: transparent;
+	outline: none;
+}
+
+#sub{width: 100%;
+	height: 0.8rem;
+    border:none;
+	background-color: #6332c9;
+	color: #FFFFFF;
+	font-size: 0.4rem;
+	border-radius: 0.5rem;
+	outline: none;
+}
+
+footer{
+	width: 100%;
+	height: 1rem;
+	text-align: center;
+	
+}
+
+#btn-forget,#btn-register{
+	border: none;
+	background-color: transparent;
+	color: #FFFFFF;
+	font-size: 0.25rem;
+	outline: none;
+}
+.download_code{
+	display: none;
+}
+
+#id{
+	border: none;
+	background-color: #6332C9;
+	color: #FFFFFF;
+	width: 30%;
+	height: 0.6rem;
+	border-radius: 0.3rem;
+	font-size: 0.25rem;
+	outline: none;
+}
+#code{
+	width: 50%;
+	height: 0.8rem;
+	background-color: transparent;
+	border:none;
+	color: #FFFFFF;
+	font-size: 0.4rem;
+	border-bottom: #b5b5b5 0.03rem solid;
+	text-align: center;
+	outline: none;
+}
+
+@media screen and (min-width:900px){
+	body {
+		height: 100%;
+		padding-top: 50px;
+	}
+	#btn-forget,#btn-register{
+		font-size: 20px;
+	}
+	section{
+		height: 500px;
+		width: 400px;
+	}
+	.p1{
+		width: 100%;
+		height: 80px;
+		font-size: 24px;
+		line-height:80px;
+		text-align: center;
+		color: #FFFFFF;
+	}
+	form{
+		width: 80%;
+		height: 360px;
+
+	}
+	form>div{
+		width: 100%;
+	}
+	label{
+		height: 30px;
+		font-size: 20px;
+	}
+	#username,#password{
+		width: 100%;
+		height: 50px;
+		font-size: 20px;
+		border-bottom: #b5b5b5 2px solid;
+	}
+	.shu{
+		font-size: 20px;
+	}
+	#prompt{
+		font-size: 15px;
+		height: 20px;
+	}
+	form p{
+		height: 16px;
+		line-height: 16px;
+	}
+	#sub{
+		height: 50px;
+		font-size: 20px;
+		border-radius: 10px;
+	}
+	#btn-number {
+		font-size: 20px;
+	}
+	footer{
+		height: 80px;
+
+	}
+	#id{
+		width: 100px;
+		height: 40px;
+		border-radius: 10px;
+		font-size: 16px;
+	}
+	#code {
+		width: 210px;
+		height: 50px;
+		font-size: 24px;
+		border-bottom: #b5b5b5 2px solid;
+	}
+}

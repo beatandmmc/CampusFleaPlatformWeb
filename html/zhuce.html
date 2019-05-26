@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>注册</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+        <meta name="format-detection" content="telephone=no" />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="black">
+        <!--<link rel="stylesheet" type="text/css" href="../css/common.css" />-->
+        <link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css" />
+        <link rel="stylesheet" href="../css/zhuce.css" />
+        <script src="../js/vue.js"></script>
+	</head>
+	<body>
+		<header>用户注册 </header>
+		<section id="vue-form">
+			<div>
+				<input type="text" class="r-name" placeholder="用户姓名" id="name"/>
+				<p class="name">此名称已经被占用</p>
+			</div>
+
+			<div class="box1">
+				<span>性别</span>
+			    <input type="radio" name="x" id="x1" value="男"/><span>男</span>
+			    <input type="radio"  name="x" id="x2" value="女"/><span>女</span>
+			</div>
+			<div>
+				<span class="r-birth">生日&nbsp;</span>
+				<input type="date" class="r-date" id="date" />
+			</div>
+
+			<div class="box3">
+				<span>专业</span><select id="province" runat="server" onchange="selectprovince(this);" ></select>
+				<select id="city" runat="server" class="r-city"></select>
+            </div>
+			<div>
+				<input type="text" placeholder="所在班级(输入1，2，3...)"  id="userClass" v-on:blur="userClass"/>
+				<p class="userClass">请输入正确的班级</p>
+			</div>
+			<div>
+				<input type="text" placeholder="学号"  id="E-mail"v-on:blur="email"/>
+				<p class="email">请填写10位有效的学号</p>
+			</div>
+			
+
+			<div>
+				<input type="text" placeholder="手机号"  id="phone" v-on:blur="phone"/>
+				<p class="phone">请输入正确的手机号</p>
+			</div>
+			<div>
+				<input type="text" placeholder="QQ" id="QQ" v-on:blur="QQ" />
+				<p class="QQ">请输入正确的QQ号码</p>
+			</div>
+
+			<div>
+				<input type="password" placeholder="密码"  id="pwd" v-on:blur="pwd"/>
+				<p class="pwd">8-16位大写字母+小写字母+数字</p>
+			</div>
+			<div>
+				<input type="password" placeholder="确认密码"  id="psd"v-on:blur="psd"/>
+				<p class="psd">密码不一致</p>
+			</div>
+
+			<div class="box2">
+				<span>短信验证码</span>
+				<input type="text" id="number"/>
+				<input type="button" id="code" value="获取验证码"/>
+			</div>
+		</section>
+		<footer>
+			<div class="accept_box">
+				<input type="checkbox" id="check" />
+				<span class="accept">同意本软件的使用协议</span>
+			</div>
+			<input type="button" value="注册" id="sub" />
+			<!--<input type="button" value="去登录" id="dld" />-->
+		</footer>
+		
+		<script src="../js/jquery.min.js"></script>
+		<script src="../js/jquery.cookie.js"></script>
+		<script src="../js/zhuce.js"></script>
+	</body>
+</html>

@@ -1,0 +1,223 @@
+body{
+	width: 100%;
+	height: 13.34rem;
+    background-image:url(../img/bg-one.jpg);
+    background-size: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+   }
+section{
+	width:80%;
+	height:9rem ;
+	display: flex;
+	flex-flow: wrap;
+	justify-content: center;
+	align-content:space-between;	
+}
+.p1{
+	 width: 100%;
+	 height: 1.2rem;
+	 font-size: 0.8rem;
+	 line-height: 1.2rem;
+	 text-align: center;
+	 color: #FFFFFF;
+}
+form{
+	width: 90%;
+	height: 6rem;
+	display: flex;
+	flex-wrap: wrap;
+	align-content: space-around;
+	justify-content: flex-start;
+
+}
+label{
+	height: 0.3rem;
+	font-size: 0.3rem;
+	color: #FFFFFF;
+	}
+#username{
+	width: 100%;
+	height: 0.8rem;
+    background-color: transparent;
+    border:none;
+    color: #FFFFFF;
+	font-size: 0.4rem;
+	border-bottom: #b5b5b5 0.03rem solid;
+	text-align: center;
+	outline: none;
+}
+#code{
+	width: 50%;
+	height: 0.8rem;
+    background-color: transparent;
+    border:none;
+    color: #FFFFFF;
+	font-size: 0.4rem;
+	border-bottom: #b5b5b5 0.03rem solid;
+	text-align: center;
+	outline: none;
+}
+#prompt{
+	 display: none; 
+	 color: #ed8639; 
+	 font-size: 0.25rem; 
+	 padding-left: 25%;
+}
+#id{
+	border: none;
+	background-color: #6332C9;
+	color: #FFFFFF;
+	width: 30%;
+	height: 0.6rem;
+	border-radius: 0.3rem;
+	font-size: 0.25rem;
+	outline: none;
+}
+form p{
+	width: 100%;
+	text-align: end;
+	height: 1rem;
+	line-height: 1rem;
+}
+#btn-number{
+	color: #FFFFFF;
+	font-size:0.3rem;
+	border: none;
+	background-color: transparent;
+	outline: none;
+}
+#sub{width: 100%;
+	height: 0.8rem;
+    border:none;
+	background-color: #6332c9;
+	color: #FFFFFF;
+	font-size: 0.4rem;
+	border-radius: 0.5rem;
+	outline: none;
+}
+footer{
+	width: 100%;
+	height: 1rem;
+	
+	text-align: center;
+	
+}
+#btn-forget,#btn-register{
+	border: none;
+	background-color: transparent;
+	color: #FFFFFF;
+	font-size: 0.25rem;
+	outline: none;
+}
+.shu{
+	color: #FFFFFF;
+	font-size: 0.3rem;
+}
+@media screen and (min-width:900px){
+	#btn-forget,#btn-register{
+		font-size: 20px;
+	}
+}
+
+@media screen and (min-width:900px){
+	body {
+		height: 100%;
+		padding-top: 30px;
+	}
+}
+@media screen and (min-width:900px){
+	section{
+		height: 600px;
+		width: 500px;
+	}
+}
+@media screen and (min-width:900px){
+	.p1{
+		width: 100%;
+		height: 80px;
+		font-size: 28px;
+		line-height:80px;
+		text-align: center;
+		color: #FFFFFF;
+	}
+}
+@media screen and (min-width:900px){
+	form{
+		width: 90%;
+		height: 400px;
+
+	}
+}
+@media screen and (min-width:900px){
+	form>div{
+		width: 100%;
+	}
+}
+@media screen and (min-width:900px){
+	label{
+		height: 30px;
+		font-size: 22px;
+	}
+}
+@media screen and (min-width:900px){
+	#username{
+		width: 100%;
+		height: 50px;
+		font-size: 24px;
+		border-bottom: #b5b5b5 2px solid;
+	}
+	#code {
+		width: 320px;
+		height: 50px;
+		font-size: 24px;
+		border-bottom: #b5b5b5 2px solid;
+	}
+}
+@media screen and (min-width:900px){
+	.shu{
+		font-size: 24px;
+	}
+}
+@media screen and (min-width:900px){
+	#prompt{
+		font-size: 15px;
+		height: 20px;
+	}
+}
+@media screen and (min-width:900px){
+	form p{
+		height: 16px;
+		line-height: 16px;
+	}
+}
+@media screen and (min-width:900px){
+	#sub{
+		height: 50px;
+		font-size: 20px;
+		border-radius: 10px;
+	}
+}
+@media screen and (min-width:900px){
+	#btn-number {
+		font-size: 20px;
+	}
+}
+@media screen and (min-width:900px){
+	footer{
+		height: 80px;
+
+	}
+}
+@media screen and (min-width:900px){
+	#id{
+		width: 120px;
+		height: 50px;
+		border-radius: 10px;
+		font-size: 18px;
+	}
+}
+@media screen and (min-width:900px){
+
+}

@@ -1,0 +1,14 @@
+.changeinfo {
+    margin-top: 30px;
+    width: 100%;
+    height: 50px;
+}
+.changeinfo span {
+    position: absolute;
+    float: left;
+    margin-top: 5px;
+    margin-left: 70px;
+    font-size: 15px;
+    color: #969696;
+
+}

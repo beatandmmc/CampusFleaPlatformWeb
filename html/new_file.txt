@@ -1,0 +1,218 @@
+public class MyDefinedSession {
+    private static MyDefinedSession myInstance;
+    private HashMap sessionMap;
+    private MyDefinedSession () {
+        sessionMap= new HashMap();
+    }
+    public static MyDefinedSession getMyInstance() {
+        if (myInstance == null) {
+            myInstance= new MyDefinedSession ();
+        }
+        return myInstance;
+    }
+    public synchronized void AddDefinedSession(HttpSession session) {
+        if (session != null) {
+            sessionMap.put(session.getId(), session);
+        }
+    }
+    public synchronized void DelDefinedSession(HttpSession session) {
+        if (session != null) {
+            sessionMap.remove(session.getId());
+        }
+    }
+    public synchronized HttpSession getDefinedSession(String sessionId) {
+        if (sessionId == null) {
+            return null;
+        }
+        return (HttpSession) sessionMap.get(sessionId);
+    }
+}
+
+public class MyModularRealmAuthenticator extends ModularRealmAuthenticator {
+    @Override
+    protected AuthenticationInfo doAuthenticate(AuthenticationToken authenticationToken){
+        assertRealmsConfigured();
+        Collection<Realm> realms = getRealms();
+        if (realms.size() == 1) {
+            return  doSingleRealmAuthentication(realms.iterator().next(),authenticationToken);
+        }else{
+            return  doMultiRealmAuthentication(realms, authenticationToken);
+        }
+    }
+}
+
+public class MyUserNamePasswdRealm extends AuthorizingRealm {
+    @Resource
+    private ShiroService shiroService;
+    @Override
+    protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection pc) {
+        User user  = (User) pc.getPrimaryPrincipal();
+        SimpleAuthorizationInfo info = new SimpleAuthorizationInfo();
+        if(user!=null) {
+             List<Permission> permissionsByUser = shiroService.getPermissionsByUser(user);
+            if (permissionsByUser.size()!=0) {
+                for (Permission p: permissionsByUser) {
+                    info.addStringPermission(p.getUrl());
+                }return info;}
+        }
+        return null;
+    }
+    @Override
+    protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken token) {
+        UsernamePasswordToken usernamePasswordToken = (UsernamePasswordToken)token;
+        User user  = shiroService.getUserByUserName(usernamePasswordToken.getUsername());
+        if(user == null) {
+            return null;
+        }
+        AuthenticationInfo info = new SimpleAuthenticationInfo(user, user.getPassword(), 
+        this.getClass().getSimpleName());
+        return info;
+     }
+}
+
+
+
+
+
+public class UserNamePasswordTelphoneToken implements  HostAuthenticationToken, RememberMeAuthenticationToken, Serializable {
+    // 手机号码
+    private String phone;
+    private String sessionId;
+  
+    private String code;
+    @Override
+    public Object getPrincipal() {
+        return this.getPhone();
+    }
+    @Override
+    public Object getCredentials() {
+        return this.getCode();
+    }
+    public UserNamePasswordTelphoneToken() { this.rememberMe = false; }
+    public UserNamePasswordTelphoneToken(String phone, String code, String sessionId ) { 
+    this(phone,code, sessionId,false, null); }
+    @Override
+    public Object getPrincipal() {
+        return this.getPhone();
+    }
+    @Override
+    public Object getCredentials() {
+        return this.getCode();
+    }
+    public UserNamePasswordTelphoneToken(String phone, String code,String sessionId,boolean rememberMe, String host) {
+        this.phone = phone;
+        this.code = code;
+        this.sessionId = sessionId;
+        this.rememberMe = rememberMe;
+        this.host = host;
+    }
+    public String getSessionId() {
+        return sessionId;
+    }
+    public void setSessionId(String sessionId) {
+        this.sessionId = sessionId;
+    }
+    public String getPhone() {
+        return phone;
+    }
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+    public String getCode() {
+        return code;
+    }
+    public void setCode(String code) {
+        this.code = code;
+    }
+   
+}
+
+
+Subject subject = SecurityUtils.getSubject();
+UserNamePasswordTelphoneToken token = new UserNamePasswordTelphoneToken(phone,code,sessionId);
+currentUser.login(token);
+
+
+public class MyTelphoneRealm extends AuthorizingRealm {
+    @Resource
+    private ShiroService shiroService;
+    @Override
+    protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection pc) {
+        User user  = (User) pc.getPrimaryPrincipal();
+        SimpleAuthorizationInfo info = new SimpleAuthorizationInfo();
+        if(user!=null) {
+            List<Permission> permissionsByUser = shiroService.getPermissionsByUser(user);
+            if (permissionsByUser.size()!=0) {
+                for (Permission p: permissionsByUser) {
+                    info.addStringPermission(p.getUrl());
+                }
+                return info;
+            }
+        }
+        return null;
+    }
+    protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken token) throws AuthenticationException {
+        UserNamePasswordTelphoneToken userNamePasswordTelphoneToken = (UserNamePasswordTelphoneToken)token;
+        User user  = shiroService.getUserByUserName(userNamePasswordTelphoneToken.getPhone());
+        String sessionId = userNamePasswordTelphoneToken.getSessionId();
+        String code = (String )MySession.getInstance().getSession(sessionId).getAttribute("code");
+        if(user == null) {
+            return null;
+        }
+        AuthenticationInfo info = new SimpleAuthenticationInfo(user, code, this.getClass().getSimpleName());
+        return info;
+
+    }
+    public boolean supports(AuthenticationToken var1){
+        return var1 instanceof UserNamePasswordTelphoneToken;
+    }
+}
+
+$.each(files, function(key,value){
+                    //每次都只会遍历一个图片数据
+                    var div = document.createElement("div"),
+                            img = document.createElement("img"),
+                            del = document.createElement("div");
+                    div.className = "pic";
+                    del.className = 'del';
+                    del.innerText = 'X';
+                    var fr = new FileReader();
+                    fr.onload = function() {
+                        img.src = this.result;
+                        div.appendChild(img);
+                        div.appendChild(del);
+                        $('.pic_box')[0].appendChild(div);
+                    };
+                    fr.readAsDataURL(value);
+                });
+                
+
+
+ public String publish(@RequestParam(value = "files", required = true) MultipartFile[] 
+ multipartFiles, HttpServletRequest request, HttpServletResponse response){
+ 
+
+public Map uploadPicture(MultipartFile uploadFile) {
+		Map resultMap = new HashMap<>();
+		try {
+			String oldName = uploadFile.getOriginalFilename();
+			String newName = oldName;
+			boolean result = uploadFile(FTP_ADDRESS, FTP_PORT, FTP_USERNAME, FTP_PASSWORD, 
+			uploadFile.getInputStream(), FTP_BASE_PATH, newName);
+			if(!result) {
+				resultMap.put("error", 1);
+				resultMap.put("message", "upload Fail");
+				return resultMap;
+			}
+			resultMap.put("error", 0);
+			resultMap.put("url", IMAGE_BASE_URL + "/" + newName);
+			return resultMap;
+		} catch (Exception e) {
+			e.printStackTrace();
+			resultMap.put("error", 1);
+			resultMap.put("message", "upload Fail");
+			return resultMap;
+		}
+	}
+	
+
