@@ -122,9 +122,7 @@ function getMore(catelogid){
 
             if(pagenum < parseInt(data.pages)+1){
             	var goods_html = template('type_goods_temp', {model:data.data});
-	           	/*var urls = data.data.imgUrl;
-	           	var url = urls.split(";");
-	            $("#src").attr("src","url[0]");*/
+
 	            $('.goods-list').append(goods_html);
             }else{
             	$('.over').show();

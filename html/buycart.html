@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>购物车</title>
+	<link rel="stylesheet" href="../css/buycart.css"/>
+	<link rel="stylesheet" href="../css/bootstrap.min.css" />
+	<link rel="stylesheet" href="../css/font-awesome.min.css"/>
+	<link rel="stylesheet" href="../css/header-common.css"/>
+	<style>
+		tbody th{
+			text-align: center;
+		}
+		.catbox table .checkbox {
+			/*border: none;*/
+			/*width: 100px;*/
+			/*height: 140px;*/
+		}
+		.catbox table tbody .checkbox{
+			width: 100px;
+			height: 140.8px;
+			line-height: 140.8px;
+			margin: 0;
+		}
+
+		.catbox table td,th {
+			text-align: center;
+		}
+		.quan{
+			width: 100px;
+		}
+		.catbox table tbody .check-one{
+			margin-top: 50px;
+			/*margin-left: 1px;*/
+		}
+
+	</style>
+</head>
+<body>
+<!-----header部分------->
+<div class="container-fluid">
+	<!--顶部菜单栏-->
+	<div class="row xust-top">
+		<nav class="navbar navbar-fixed-top xust-header" role="navigation" id="xust-nav">
+			<div class="navbar-header">
+				<a class="navbar-brand xust-title" href="homepage.html"><i class="fa fa-home my-home" aria-hidden="true"></i><span class="xust">西科大 </span>二手工坊 <span class="xust-en">xust.market</span></a>
+			</div>
+
+
+			<div class="navbar-right btn-download">
+				<div class="done">
+					<button class="btn btn-primary" id="username"><i class="fa fa-user-o"></i> <span id="user"></span></button>
+					<a class="exit" data-toggle="modal" href="#myModal">退出</a>
+				</div>
+				<div class="undone">
+					<button id="userSubmit" type="button" class="btn btn-primary" hidden="hidden">登录</button>
+					<button id="register" type="button" class="btn btn-primary" hidden="hidden">注册</button>
+				</div>
+			</div>
+
+		</nav>
+	</div>
+</div>
+<!-----header结束------->
+<div class="catbox">
+
+	<table id="cartTable">
+		<thead>
+			<tr>
+				<th class="quan"><label><input class="check-all check" type="checkbox"/>&nbsp;全选</label></th>
+				<th>商品</th>
+				<th>单价</th>
+				<th>数量</th>
+				<th>小计</th>
+				<th>操作</th>
+			</tr>
+		</thead>
+		<tbody>
+			<!--<tr>-->
+				<!--<td class="checkbox"><input class="check-one check" type="checkbox"/></td>-->
+				<!--<td class="goods"><img src="images/1.jpg" alt=""/><span>Casio/卡西欧 EX-TR350</span></td>-->
+				<!--<td class="price">5999.88</td>-->
+				<!--<td class="count"><span class="reduce"></span><input class="count-input" type="text" value="1"/><span class="add">+</span></td>-->
+				<!--<td class="subtotal">5999.88</td>-->
+				<!--<td class="operation"><span class="delete">删除</span></td>-->
+			<!--</tr>-->
+			<!--<tr>-->
+				<!--<td class="checkbox"><input class="check-one check" type="checkbox"/></td>-->
+				<!--<td class="goods"><img src="images/2.jpg" alt=""/><span>Canon/佳能 PowerShot SX50 HS</span></td>-->
+				<!--<td class="price">3888.50</td>-->
+				<!--<td class="count"><span class="reduce"></span><input class="count-input" type="text" value="1"/><span class="add">+</span></td>-->
+				<!--<td class="subtotal">3888.50</td>-->
+				<!--<td class="operation"><span class="delete">删除</span></td>-->
+			<!--</tr>-->
+			<!--<tr>-->
+				<!--<td class="checkbox"><input class="check-one check" type="checkbox"/></td>-->
+				<!--<td class="goods"><img src="images/3.jpg" alt=""/><span>Sony/索尼 DSC-WX300</span></td>-->
+				<!--<td class="price">1428.50</td>-->
+				<!--<td class="count"><span class="reduce"></span><input class="count-input" type="text" value="1"/><span class="add">+</span></td>-->
+				<!--<td class="subtotal">1428.50</td>-->
+				<!--<td class="operation"><span class="delete">删除</span></td>-->
+			<!--</tr>-->
+			<!--<tr>-->
+				<!--<td class="checkbox"><input class="check-one check" type="checkbox"/></td>-->
+				<!--<td class="goods"><img src="images/4.jpg" alt=""/><span>Fujifilm/富士 instax mini 25</span></td>-->
+				<!--<td class="price">640.60</td>-->
+				<!--<td class="count"><span class="reduce"></span><input class="count-input" type="text" value="1"/><span class="add">+</span></td>-->
+				<!--<td class="subtotal">640.60</td>-->
+				<!--<td class="operation"><span class="delete">删除</span></td>-->
+			<!--</tr>-->
+		</tbody>
+	</table>
+	
+	<div class="foot" id="foot">
+		<label class="fl select-all"><input type="checkbox" class="check-all check"/>&nbsp;全选</label>
+		<a class="fl delete" id="deleteAll" href="javascript:;">删除</a>
+		<div class="fr closing">结 算</div>
+		<div class="fr total">合计：￥<span id="priceTotal">0.00</span></div>
+		<div class="fr selected" id="selected">已选商品<span id="selectedTotal">0</span>件<span class="arrow up">︽</span><span class="arrow down">︾</span></div>
+		<div class="selected-view">
+			<div id="selectedViewList" class="clearfix">
+				<div><img src="../images/1.jpg"><span>取消选择</span></div>
+			</div>
+			<span class="arrow">◆<span>◆</span></span>
+		</div>
+	</div>
+
+</div>
+<script type="text/javascript" src="../js/jquery.min.js"></script>
+<script type="text/javascript" src="../js/template-web.js"></script>
+<script type="text/javascript" src="../js/query.js"></script>
+<script type="text/javascript" src="../js/buycart.js"></script>
+<script id="type_goods_temp" type="text/html">
+	{{each model}}
+    <tr>
+        <td class="checkbox"><input class="check-one check" type="checkbox"/></td>
+        <td class="goods"><img src="{{$value.imgUrl.split(';')[0]}}"/><span>{{$value.name}}</span></td>
+        <td class="price">{{$value.price}}</td>
+        <!--<td class="count"><span class="reduce"></span><input class="count-input" type="text" value="1"/><span class="add">+</span></td>-->
+        <td class="count"><input class="count-input" type="text" value="1" readonly/></td>
+        <td class="subtotal">{{$value.price}}</td>
+        <td class="operation"><span class="delete">删除</span></td>
+    </tr>
+	{{/each}}
+</script>
+</body>
+</html>
