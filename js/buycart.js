@@ -136,17 +136,17 @@ window.onload = function () {
             getTotal();
         }
         // 给数目输入框绑定keyup事件
-        tr[i].getElementsByTagName('input')[1].onkeyup = function () {
-            var val = parseInt(this.value);
-            if (isNaN(val) || val <= 0) {
-                val = 1;
-            }
-            if (this.value != val) {
-                this.value = val;
-            }
-            getSubtotal(this.parentNode.parentNode); //更新小计
-            getTotal(); //更新总数
-        }
+        //tr[i].getElementsByTagName('input')[1].onkeyup = function () {
+        //    var val = parseInt(this.value);
+        //    if (isNaN(val) || val <= 0) {
+        //        val = 1;
+        //    }
+        //    if (this.value != val) {
+        //        this.value = val;
+        //    }
+        //    getSubtotal(this.parentNode.parentNode); //更新小计
+        //    getTotal(); //更新总数
+        //}
     }
 
     // 点击全部删除
