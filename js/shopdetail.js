@@ -127,13 +127,11 @@ function getUserName(){
 
 function addToCart(){
 	var itemId = $("#addCart").html();
-	var goodsName = $('.imgname').html();
-	var describle =  $('.describle').html();
-	var realPrice = $('.realPrice').html();
-    var newPrice = $('.newPrice').html();       
-            
-            
-            $("#addCart").html(itemId);
+//	var goodsName = $('.imgname').html();
+//	var describle =  $('.describle').html();
+//	var realPrice = $('.realPrice').html();
+//  var newPrice = $('.newPrice').html();       
+    //$("#addCart").html(itemId);
 	var sessionId = $.cookie('sessionId');
 	console.log($.cookie('sessionId'));
 	console.log(itemId);
@@ -147,7 +145,7 @@ function addToCart(){
         data: {
         	"itemId":itemId,
         	"amount":1,
-            "sessionId":$.cookie('sessionId') instanceof String ? $.cookie('sessionId'): ''
+            "sessionId":typeof($.cookie('sessionId'))== 'string' ? $.cookie('sessionId'): ''
         },
         success:function(data) {
         	console.log(data);
