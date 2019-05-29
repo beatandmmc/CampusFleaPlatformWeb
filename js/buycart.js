@@ -251,18 +251,19 @@ function delGoods(goodsArr) {
 	//删除商品ajax
 	$.ajax({
 		//url :'http://39.107.247.211:8080/CampusFleaPlatform_war/goods/catelog',
-		url: 'http://192.168.43.213:8080/shopping/myCart',
+		url: 'http://192.168.43.213:8080/shopping/delCart',
 		type: 'GET',
 		async: true,
 		dataType: 'jsonp',
 		jsonp: 'callback',
-		timeout: 5000,
+		timeout: 5000,                
+		traditional: true,//这里设置为true,不然后台接收到的参数会带上[]，导致数据无法正常接收
 		data: {
 			"sessionId": typeof($.cookie('sessionId')) == 'string' ? $.cookie('sessionId') : '',
 			'goodsId': goodsArr
 		},
 		success: function(data) {
-			console.log(data);
+			console.log(data.code);
 
 		},
 		error: function() {
