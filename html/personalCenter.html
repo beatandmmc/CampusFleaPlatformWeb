@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>后台用户中心</title>
+		<link rel="stylesheet" href="../css/bootstrap.min.css">
+		<link rel="stylesheet" href="../css/font-awesome.min.css" />
+		<link rel="stylesheet" type="text/css" href="../css/iconfont.css" />
+		<link rel="stylesheet" type="text/css" href="../css/personalCenter.css" />
+		<style>
+			.container{padding-top:10px}
+			body {
+				padding-top: 70px;
+			}
+			body a{
+				 color: #62ab00;
+			 }
+			body a:hover,a:visited, a:link, a:active{
+				color: #62ab00;
+				text-decoration: none;
+			}
+
+			.xust-header{
+				padding: 5px 30px 5px 0;
+				/*background: #ffffff;*/
+				box-shadow: #666 0 0 10px;
+				background-color: #62ab00;
+			}
+			.btn-download {
+				margin-top: 7px;
+				padding-right: 20px;
+			}
+			.btn-download button {
+				margin-right: 10px;
+			}
+			.xust-title {
+				color: #222222;
+				font-size: 22px;
+				font-weight: bold;
+			}
+			.xust-title:hover{
+				color: #222222;
+			}
+			.xust{
+				color: #ffffff;
+				padding-left: 4px;
+				font-size: 24px;
+			}
+			.xust-en {
+				color: #ffffff;
+				font-size: 16px;
+				padding-left: 5px;
+				margin-right: 50px;
+			}
+			.my-home{
+				color: #ffffff;
+				font-size: 28px;
+			}
+			.done{
+				display: none;
+			}
+			
+		</style>
+	</head>
+	<body>
+	<div id="cover" style="min-height: 639px;">
+		<!-----header部分------->
+		<div class="container-fluid">
+			<!--顶部菜单栏-->
+			<div class="row xust-top">
+				<nav class="navbar navbar-fixed-top xust-header" role="navigation" id="xust-nav">
+					<div class="navbar-header">
+						<a class="navbar-brand xust-title" href="homepage.html"><i class="fa fa-home my-home" aria-hidden="true"></i><span class="xust">西科大 </span>二手工坊 <span class="xust-en">xust.market</span></a>
+					</div>
+
+
+					<div class="navbar-right btn-download">
+						<div class="done">
+							<button class="btn btn-primary" id="username"><i class="fa fa-user-o"></i><span id="user"></span></button>
+							<a class="exit" data-toggle="modal" href="#myModal">退出</a>
+						</div>
+						<div class="undone">
+							<button id="userSubmit" type="button" class="btn btn-success" hidden="hidden">登录</button>
+							<button id="register" type="button" class="btn btn-success" hidden="hidden">注册</button>
+						</div>
+					</div>
+
+				</nav>
+			</div>
+		</div>
+		<!-----header结束------->
+
+		<div class="header">
+			<!--<div class="bar">-->
+				<!--<div class="w1200">-->
+					<!--<span class="l">xxx网<font>用户中心</font></span>-->
+					<!--<span class="r"><a href="#"><i class="icon iconfont icon-dianyuan"></i>退出</a></span>-->
+				<!--</div>-->
+			<!--</div>-->
+			<div class="user-info">
+				<div class="w1200">
+					<div class="user-headface">
+						<img src="../images/user_face.jpg"/>
+					</div>
+					<div class="user-account">
+						<p class="tip">下午好，Tom</p>
+						<p class="account">
+							<span>帐户名：Tom</span>
+							<span>用户：tomandjerry</span>
+						</p>
+					</div>
+					<div class="user-modify">
+						修改资料
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="main w1200">
+			<div class="left">
+				<ul class="sideBar">
+					<li>
+						<a href="#" class="active">
+							<i class="fa fa-folder-open-o" style="width: 26px;"></i>
+							我的闲置
+						</a>
+					</li>
+					<li>
+						<a href="#">
+							<i class="fa fa-file-text-o" style="width: 26px;"></i>
+							我的求购
+						</a>
+					</li>
+					<li>
+						<a href="#">
+							<i class="fa fa-map-o" style="width: 26px;font-size: 17px; "></i>
+							地址管理
+						</a>
+					</li>
+					<li>
+						<a href="#">
+							<i class="fa fa-heart-o"></i>
+							我的收藏
+						</a>
+					</li>
+					<li>
+						<a href="#">
+							<i class="icon iconfont icon-geren"></i>
+							个人资料
+						</a>
+					</li>
+					<li>
+						<a href="#">
+							<i class="icon iconfont icon-jilu"></i>
+							看房记录
+						</a>
+					</li>
+				</ul>
+			</div>
+			<div class="right">
+				<div class="tap">
+					<span class="contTitle">我的闲置</span>
+				</div>
+				<div class="container">
+					<div class="no-doc">
+						<img src="../images/no_doc.jpg"/>
+						<p>您还没有消息哦~</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script src="../js/jquery.min.js"></script>
+	<script>
+		$(".sideBar li").click(function(){
+			$('.contTitle').html($(this).text().trim());
+			$('.sideBar a').removeClass('active');
+			$(this).children('a').addClass('active');
+		})
+	</script>
+
+	</body>
+
+</html>

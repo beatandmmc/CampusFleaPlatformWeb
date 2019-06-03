@@ -110,6 +110,50 @@ new Vue({
 				      		    b=true;
 					      	}
 		},
+		getid: function() {
+			if(b == true && $("#phone").val().length != 0) {
+				$.ajax({
+					type: "get",
+					url: "http://localhost:8080/user/getTelCode",
+					dataType: "jsonp",
+					jsonp: "callback",
+					data: {
+						"userPhone": $("#username").val()
+					},
+					success: function(data) {
+						//不存在
+						if(data.status == "done") {
+							alert("该手机号已被注册");
+						} else {
+							sId = data.sessionId;
+							if(bOnOff) {
+								bOnOff = false;
+								timer = setInterval(function() {
+									if(number > 0) {
+										number--;
+										$("#code").val(number + " s");
+										$("#code").attr("disabled", "disabled");
+									} else {
+										clearInterval(timer);
+										$("#code").val("获取验证码");
+										$("#code").attr("disabled", false);
+										number = 60;
+										bOnOff = !bOnOff;
+									}
+								}, 1000);
+							}
+
+						}
+					},
+					error: function() {
+						alert("请求失败");
+					}
+				});
+			} else {
+				alert("请填写正确的手机号");
+			}
+
+		},
 		psd:function(){
 			if($("#pwd").val()===$("#psd").val()&&$("#psd").val().length!=0){
 				$(".psd").css("display","none");
@@ -146,49 +190,49 @@ var timer = null;
 var number = 60;
 var bOnOff = true;
 var sId="";
-$("#code").click(function(){
-	console.log(m,bm)
-	  if(m==true&&$("#phone").val()!=""&&bm==true){
-	  	$.ajax({
-	  	type:"get",
-	  	url:"http://localhost:8080/getCodeController/getCode",
-	  	dataType:"jsonp",
-		jsonp:"jsonpCallback",
-	  	data:{"userPhone":$("#phone").val()},
-	  	success:function(data1){
-						if(data1.err=="0"){
-							alert("该手机号已经被注册");
-						}else{
-							sId =data1.sessionId;
-							if(bOnOff){
-		  	                       bOnOff = false;
-						  timer = setInterval(function(){
-							  if(number>0){
-								   number--;
-								   $("#code").val(number+" s");
-								    $("#code").attr("disabled","disabled");
-							  }else{
-								   clearInterval(timer);
-								   $("#code").val("获取验证码");
-								   $("#code").attr("disabled",false);
-								   number = 60;
-								   bOnOff = !bOnOff;
-							  }
-					    },1000);
-			     }
-						}
-			    },
-	  	error:function(){
-	  		alert("验证码请求失败")
-	  	}
-	  });
-	  	  
-	  }
-	  else{
-	  	alert("请填写正确的手机号");
-	  }
-	  
-});
+//$("#code").click(function(){
+//	console.log(m,bm);
+//	  if(m==true&&$("#phone").val()!=""&&bm==true){
+//	  	$.ajax({
+//	  	type:"get",
+//	  	url:"http://localhost:8080/getCodeController/getCode",
+//	  	dataType:"jsonp",
+//		jsonp:"jsonpCallback",
+//	  	data:{"userPhone":$("#phone").val()},
+//	  	success:function(data1){
+//						if(data1.err=="0"){
+//							alert("该手机号已经被注册");
+//						}else{
+//							sId =data1.sessionId;
+//							if(bOnOff){
+//		  	                       bOnOff = false;
+//						  timer = setInterval(function(){
+//							  if(number>0){
+//								   number--;
+//								   $("#code").val(number+" s");
+//								    $("#code").attr("disabled","disabled");
+//							  }else{
+//								   clearInterval(timer);
+//								   $("#code").val("获取验证码");
+//								   $("#code").attr("disabled",false);
+//								   number = 60;
+//								   bOnOff = !bOnOff;
+//							  }
+//					    },1000);
+//			     }
+//						}
+//			    },
+//	  	error:function(){
+//	  		alert("验证码请求失败")
+//	  	}
+//	  });
+//
+//	  }
+//	  else{
+//	  	alert("请填写正确的手机号");
+//	  }
+//
+//});
 $("#sub").click(function(){
 	var sex="";
    if($("#x1").is(":checked")==true){
@@ -198,16 +242,13 @@ $("#sub").click(function(){
    }
 //  alert(b,by,$("#check").is(":checked"),$("#x1").is(":checked"),$("#x2").is(":checked"));
 	if(b==true&&$("#check").is(":checked")==true&&(($("#x1").is(":checked")==true||$("#x2").is(":checked")==true)&&by==true)){
-	  var speciality =$("#province").val()+"-"+$("#city").val();
+	  //var speciality =$("#province").val()+"-"+$("#city").val();
 	  $.ajax({
 	    	type:"get",
 	    	url:"http://localhost:8080/register/doRegister",
 	    	dataType:"jsonp",
 			jsonp:"jsonpCallback",
-	data:{"userName":$("#name").val(),"userSex":sex,"userBirthday":$("#date").val(),
-	"speciality":speciality,"userQQ":$("#QQ").val(),"userEmail":$("#E-mail").val(),
-	"userPhone":$("#phone").val(),"classId":$("#userClass").val(),"userPassword":$("#pwd").val(),
-	"userCode":$("#number").val(),"sessionId":sId},
+	data:{"username":$("#name").val(),"sessionId":sId,"sex":sex,"qq":$("#QQ").val(), "phone":$("#phone").val(),"password":$("#pwd").val(),"code":$("#number").val()},
 	    	success:function(data1){
 	    		if(data1.suc==0){
 	    			window.location.href="denglu.html";
