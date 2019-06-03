@@ -193,26 +193,53 @@ $.each(files, function(key,value){
  
 
 public Map uploadPicture(MultipartFile uploadFile) {
-		Map resultMap = new HashMap<>();
-		try {
-			String oldName = uploadFile.getOriginalFilename();
-			String newName = oldName;
-			boolean result = uploadFile(FTP_ADDRESS, FTP_PORT, FTP_USERNAME, FTP_PASSWORD, 
-			uploadFile.getInputStream(), FTP_BASE_PATH, newName);
-			if(!result) {
-				resultMap.put("error", 1);
-				resultMap.put("message", "upload Fail");
-				return resultMap;
-			}
-			resultMap.put("error", 0);
-			resultMap.put("url", IMAGE_BASE_URL + "/" + newName);
-			return resultMap;
-		} catch (Exception e) {
-			e.printStackTrace();
+	Map resultMap = new HashMap<>();
+	try {
+		String oldName = uploadFile.getOriginalFilename();
+		String newName = oldName;
+		boolean result = uploadFile(FTP_ADDRESS, FTP_PORT, FTP_USERNAME, FTP_PASSWORD, 
+		uploadFile.getInputStream(), FTP_BASE_PATH, newName);
+		if(!result) {
 			resultMap.put("error", 1);
 			resultMap.put("message", "upload Fail");
 			return resultMap;
 		}
+		resultMap.put("error", 0);
+		resultMap.put("url", IMAGE_BASE_URL + "/" + newName);
+		return resultMap;
+	} catch (Exception e) {
+		e.printStackTrace();
+		resultMap.put("error", 1);
+		resultMap.put("message", "upload Fail");
+		return resultMap;
 	}
+}
+
+
+
 	
+
+String hashAlgorithmName = "MD5";//加密方式
+Object crdentials = u.getPassword();//密码原值
+ByteSource salt = ByteSource.Util.bytes(u.getUsername());//以账号作为盐值
+int hashIterations = 1024;//加密1024次
+Object result = new SimpleHash(hashAlgorithmName,crdentials,salt,hashIterations);
+
+
+
+$(document).on("scroll",function(){
+    var windowHeight = $(window).height();
+    var scrollTop = $(window).scrollTop();
+    var docHeight = $(document).height();
+    var endHeight = docHeight - scrollTop - windowHeight;
+    if (endHeight <= 0) {
+        pagenum++;
+        var catelogid = $('.catelog-name').attr('catelogid');
+        if(flag_more){
+        	//再次请求
+        	getMore(catelogid);
+        }
+    }
+});
+
 
