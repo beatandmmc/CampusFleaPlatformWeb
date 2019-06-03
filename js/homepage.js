@@ -1,7 +1,10 @@
 
 $(function () {
-	
-    $.ajax({
+    newGoods();
+    getUserName();
+});
+function newGoods(){
+	$.ajax({
     	//url :'http://39.107.247.211:8080/CampusFleaPlatform_war/goods/catelog',
     	url :'http://192.168.43.213:8080/goods/catelog',
         type: 'GET',
@@ -15,7 +18,6 @@ $(function () {
             "catalog" : 0
         },
         success: function(data) {
-            console.log(data);
             var goods_html = template('type_goods_temp', {model:data.data});
             $('.goods-list').html(goods_html);
 
@@ -24,8 +26,7 @@ $(function () {
             console.log("error")
         }
     });
-    getUserName();
-});
+}
 var pagenum = 1;
 var flag_more = true;
 $(".xust-nav").children('li').click(function(){
@@ -35,6 +36,51 @@ $(".xust-nav").children('li').click(function(){
     $('.catelog-name').html(catelogname).attr('catelogid',catelogid);
     getGoods(catelogid);
 });
+
+//搜索
+$('.goods-search').click(function(){
+	var str = $('.search-text').val()
+	searchQuery(str)
+});
+
+function searchQuery(str){
+	console.log(str)
+		$.ajax({
+    	//url :'http://39.107.247.211:8080/CampusFleaPlatform_war/goods/catelog',
+    	url :'http://192.168.43.213:8080/goods/search',
+        type: 'GET',
+        async:true,
+        dataType: 'jsonp',
+        jsonp: 'callback',
+        timeout: 5000,
+        data: {
+            str:str
+        },
+        success: function(data) {
+        	console.log(data)
+            if(data.data.length == 0){
+            	console.log('meide')
+            	$('.catelog-name').html('最新发布');
+            	$('.nothing').show()
+            	$('.over').hide()
+            	newGoods()
+            }else{
+            	$('.nothing').hide()
+            	$('.over').show()
+           		$('.catelog-name').html(str);
+	            var search_html = template('type_search_temp', {model:data.data});
+	            $('.goods-list').html(search_html);
+	            flag_more = false;
+            }
+            
+            
+        },
+        error:function(){
+            console.log("搜索error")
+        }
+   });
+}
+
 function getUserName(){
 //	console.log($.cookie('sessionId'));
 //	console.log(typeof($.cookie('sessionId')));
@@ -75,6 +121,7 @@ function getUserName(){
 }
 function getGoods(catelogid){
 	$('.over').hide();
+	$('.nothing').hide()
     flag_more = true;
     $.ajax({
         //url :'http://39.107.247.211:8080/CampusFleaPlatform_war/goods/catelog',
@@ -188,6 +235,7 @@ function getItemDetail(itemId){
 	
 	
 }
+
 
 
 

@@ -20,7 +20,19 @@
             <div>
                 <form class="navbar-form navbar-left" role="search">
                     <div class="form-group">
-                        	好物搜索<input type="text" class="form-control" placeholder="搜点啥吧！！！">
+                    	<div class="row">
+							<div class="col-lg-12 col-md-12 col-sm-12 col-xs-4">
+								<div class="input-group">
+									<input type="text" class="form-control search-text">
+									<span class="input-group-btn">
+										<button class="btn btn-default goods-search" type="button">
+											搜索
+										</button>
+									</span>
+								</div><!-- /input-group -->
+							</div><!-- /.col-lg-6 -->
+						</div>
+                        	<!--<input type="text" class="goods-search" placeholder="搜点啥吧！！！" onkeyup="searchQuery()">-->
                         <!--<button type="submit" class="btn btn-default">立即搜索</button>-->
                     </div>
                 </form>
@@ -50,7 +62,7 @@
     </div>
     <!--导航&banner图-->
     <div class="row xust-banner">
-        <div class="col-md-2.2 col-sm-3 col-xs-3 section-left">
+        <div class="col-md-3 col-sm-3 col-xs-3 section-left">
             <ul class="xust-nav">
                 <li class="row" catelogId="0">
                     <div class="type-icon col-md-4 col-sm-4 col-xs-5"><img src="../img/index.png"></div>
@@ -102,14 +114,16 @@
             <div class="row xust-section">
                 <div>
                     <div class="row goods-title">
-                        <div class="col-md-2 goods-type">
+                        <div class="col-md-2 col-sm-4 col-xs-6 goods-type">
                             <h3 class="catelog-name" catelogid="0">最新发布</h3>
                             <div class="line"></div>
                         </div>
                     </div>
+                    <div class="nothing">暂时没有您要的商品，看看别的吧~~</div>
                     <div class="row goods-list">
                         <!-- 最新发布商品展示区-->
-
+                        
+                 
                     </div>
                     <div class="over">我是有底线的~</div>
                 </div>
@@ -168,22 +182,43 @@
     </div>
     {{/each}}
 </script>
-<script>
-//    function callback_fn(data){
-//        alert(data + ":2");
-//    }
-//    $.ajax({
-//        type:"get",
-//        dataType:"jsonp",
-//        url:"http://192.168.43.213:8080/goods/test",
-//        jsonpCallback:"callback_fn",
-//        success:function(data) {
-//            console.log(data + ":1");
-//        },
-//        error:function(){
-//          console.log("error")
-//        }
-//    });
+<script id="type_search_temp" type="text/html">
+    {{each model}}
+    <div class="col-md-3 col-sm-3 col-xs-6">
+        <div class="card col-md-11 col-sm-11 col-xs-11" id="hha" onclick="getItemDetail($(this).attr('data-id'))" data-id={{$value.id}}>
+            <div class="card-image">
+               <!--<img id="src" src="{../img/goods.jpg}" />-->
+               <img src="{{$value.imgUrl.split(';')[0]}}" />
+            </div>
+            <div class="card-content">
+            	<div class="row">
+                	<h4 class="name col-md-7 col-xs-7 col-sm-7" title={{$value.name}}>{{$value.name}}</h4>
+                	<div class="catelog col-md-4 col-xs-5 col-sm-5 text-right">
+                		{{if $value.catelogId == 1}}
+                		闲置数码
+                		{{else if $value.catelogId == 2}}
+                		校园代步
+                		{{else if $value.catelogId == 3}}
+                		电器日用
+                		{{else if $value.catelogId == 4}}
+                		图书教材
+                		{{else if $value.catelogId == 5}}
+                		美妆衣物
+                		{{else if $value.catelogId == 6}}
+                		运动棋牌
+                		{{else}}
+                		票券小物
+                		{{/if}}
+                	</div>
+                </div>
+                <div class="row">
+                    <span class="col-md-5 col-xs-5 col-sm-5 price">{{$value.price}}</span>
+                    <span class="col-md-7 col-xs-7 col-sm-7 time text-right">{{$value.startTime}}</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    {{/each}}
 </script>
 </body>
 </html>
