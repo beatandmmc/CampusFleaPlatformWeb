@@ -7,6 +7,7 @@
 		<link rel="stylesheet" href="../css/font-awesome.min.css" />
 		<link rel="stylesheet" type="text/css" href="../css/iconfont.css" />
 		<link rel="stylesheet" type="text/css" href="../css/personalCenter.css" />
+		<link rel="stylesheet" href="../css/buycart.css"/>
 		<style>
 			.container{padding-top:10px}
 			body {
@@ -33,7 +34,7 @@
 			.btn-download button {
 				margin-right: 10px;
 			}
-			.xust-title {
+			body .xust-title {
 				color: #222222;
 				font-size: 22px;
 				font-weight: bold;
@@ -59,7 +60,64 @@
 			.done{
 				display: none;
 			}
-			
+			.change-main{
+				width: 600px;
+				height: 450px;
+				background: rgba(255,255,255,0.8);
+				margin: 150px 0 0 20px;
+				position: relative;
+				padding-top: 150px;
+			}
+			.pic-box{
+				position: absolute;
+				top: 0;
+				left: 50%;
+				transform: translate(-50%,-30%);
+			}
+			.change-pic-btn{
+				margin-top: 30px;
+				margin-left: 2px;
+				font-size: 16px;
+
+			}
+
+			#head-pic{
+				width: 100px;
+				height: 100px;
+			}
+			.banner .title{
+				color: #004d40;
+				font-size: 20px;
+			}
+			.submit-info{
+				margin: 20px 0 0 140px;
+			}
+
+			tbody th{
+				text-align: center;
+			}
+			.catbox table .checkbox {
+				/*border: none;*/
+				/*width: 100px;*/
+				/*height: 140px;*/
+			}
+			.catbox table tbody .checkbox{
+				width: 100px;
+				height: 140.8px;
+				line-height: 140.8px;
+				margin: 0;
+			}
+
+			.catbox table td,th {
+				text-align: center;
+			}
+			.quan{
+				width: 100px;
+			}
+			.catbox table tbody .check-one{
+				margin-top: 50px;
+				/*margin-left: 1px;*/
+			}
 		</style>
 	</head>
 	<body>
@@ -109,9 +167,8 @@
 							<span>用户：tomandjerry</span>
 						</p>
 					</div>
-					<div class="user-modify">
-						修改资料
-					</div>
+					<!--<a class="exit" data-toggle="modal" href="#myModal">退出</a>-->
+					<div class="user-modify" data-toggle="modal" data-target="#myModal">修改资料</div>
 				</div>
 			</div>
 		</div>
@@ -119,49 +176,138 @@
 			<div class="left">
 				<ul class="sideBar">
 					<li>
-						<a href="#" class="active">
+						<a href="#xianzhi" data-toggle="tab" class="active">
 							<i class="fa fa-folder-open-o" style="width: 26px;"></i>
 							我的闲置
 						</a>
 					</li>
 					<li>
-						<a href="#">
+						<a href="#qiugou" data-toggle="tab">
 							<i class="fa fa-file-text-o" style="width: 26px;"></i>
 							我的求购
 						</a>
 					</li>
 					<li>
-						<a href="#">
+						<a href="#dizhi" data-toggle="tab">
 							<i class="fa fa-map-o" style="width: 26px;font-size: 17px; "></i>
 							地址管理
 						</a>
 					</li>
 					<li>
-						<a href="#">
+						<a href="#buycart" data-toggle="tab">
 							<i class="fa fa-heart-o"></i>
-							我的收藏
+							我的购物车
 						</a>
 					</li>
 					<li>
-						<a href="#">
+						<a href="#ziliao" data-toggle="tab">
 							<i class="icon iconfont icon-geren"></i>
 							个人资料
 						</a>
 					</li>
 					<li>
-						<a href="#">
+						<a href="#jilu" data-toggle="tab">
 							<i class="icon iconfont icon-jilu"></i>
 							看房记录
 						</a>
 					</li>
+					<div>
+						<a href="#no-info" data-toggle="tab" id="no-link"></a>
+					</div>
 				</ul>
 			</div>
 			<div class="right">
 				<div class="tap">
 					<span class="contTitle">我的闲置</span>
 				</div>
-				<div class="container">
-					<div class="no-doc">
+				<div class="container tab-content">
+					<!-- 我的闲置-->
+					<div class="tab-pane fade active in row goods-list" id="xianzhi">
+
+
+					</div>
+					<!-- 我的求购-->
+					<div class="tab-pane row fade goods-list" id="qiugou">
+
+					</div>
+
+					<div class="tab-pane row fade goods-list" id="dizhi">
+						dizhi
+					</div>
+					<div class="tab-pane row fade" id="buycart">
+						<div class="catbox">
+
+							<table id="cartTable">
+								<thead>
+								<tr>
+									<th class="quan"><label><input class="check-all check" type="checkbox"/>&nbsp;全选</label></th>
+									<th>商品</th>
+									<th>单价</th>
+									<th>数量</th>
+									<th>小计</th>
+									<th>操作</th>
+								</tr>
+								</thead>
+								<tbody>
+								<!--<tr>-->
+								<!--<td class="checkbox"><input class="check-one check" type="checkbox"/></td>-->
+								<!--<td class="goods"><img src="images/1.jpg" alt=""/><span>Casio/卡西欧 EX-TR350</span></td>-->
+								<!--<td class="price">5999.88</td>-->
+								<!--<td class="count"><span class="reduce"></span><input class="count-input" type="text" value="1"/><span class="add">+</span></td>-->
+								<!--<td class="subtotal">5999.88</td>-->
+								<!--<td class="operation"><span class="delete">删除</span></td>-->
+								<!--</tr>-->
+								<!--<tr>-->
+								<!--<td class="checkbox"><input class="check-one check" type="checkbox"/></td>-->
+								<!--<td class="goods"><img src="images/2.jpg" alt=""/><span>Canon/佳能 PowerShot SX50 HS</span></td>-->
+								<!--<td class="price">3888.50</td>-->
+								<!--<td class="count"><span class="reduce"></span><input class="count-input" type="text" value="1"/><span class="add">+</span></td>-->
+								<!--<td class="subtotal">3888.50</td>-->
+								<!--<td class="operation"><span class="delete">删除</span></td>-->
+								<!--</tr>-->
+								<!--<tr>-->
+								<!--<td class="checkbox"><input class="check-one check" type="checkbox"/></td>-->
+								<!--<td class="goods"><img src="images/3.jpg" alt=""/><span>Sony/索尼 DSC-WX300</span></td>-->
+								<!--<td class="price">1428.50</td>-->
+								<!--<td class="count"><span class="reduce"></span><input class="count-input" type="text" value="1"/><span class="add">+</span></td>-->
+								<!--<td class="subtotal">1428.50</td>-->
+								<!--<td class="operation"><span class="delete">删除</span></td>-->
+								<!--</tr>-->
+								<!--<tr>-->
+								<!--<td class="checkbox"><input class="check-one check" type="checkbox"/></td>-->
+								<!--<td class="goods"><img src="images/4.jpg" alt=""/><span>Fujifilm/富士 instax mini 25</span></td>-->
+								<!--<td class="price">640.60</td>-->
+								<!--<td class="count"><span class="reduce"></span><input class="count-input" type="text" value="1"/><span class="add">+</span></td>-->
+								<!--<td class="subtotal">640.60</td>-->
+								<!--<td class="operation"><span class="delete">删除</span></td>-->
+								<!--</tr>-->
+								</tbody>
+							</table>
+
+							<div class="foot" id="foot">
+								<label class="fl select-all"><input type="checkbox" class="check-all check"/>&nbsp;全选</label>
+								<a class="fl delete" id="deleteAll" href="javascript:;">删除</a>
+								<div class="fr closing">结 算</div>
+								<div class="fr total">合计：￥<span id="priceTotal">0.00</span></div>
+								<div class="fr selected" id="selected">已选商品<span id="selectedTotal">0</span>件<span class="arrow up">︽</span><span class="arrow down">︾</span></div>
+								<div class="selected-view">
+									<div id="selectedViewList" class="clearfix">
+										<div><img src="../images/1.jpg"><span>取消选择</span></div>
+									</div>
+									<span class="arrow">◆<span>◆</span></span>
+								</div>
+							</div>
+
+						</div>
+					</div>
+					<div class="tab-pane row fade" id="ziliao">
+						ziliao
+					</div>
+					<div class="tab-pane row fade" id="jilu">
+						jilu
+					</div>
+					<!-- 没有信息-->
+					<div class="no-doc tab-pane row fade" id="no-info">
 						<img src="../images/no_doc.jpg"/>
 						<p>您还没有消息哦~</p>
 					</div>
@@ -169,13 +315,110 @@
 			</div>
 		</div>
 	</div>
+<!--模态框-->
+	<div id="myModal" class="modal fade" role="dialog">
+		<div class="modal-dialog">
+
+			<!-- 模态内容 -->
+			<div class="change-main">
+				<div class="pic-box">
+					<div class="pic">
+						<img src="../images/user_face.jpg" class="img-circle" id="head-pic">
+					</div>
+					<label for="up-pic" class="btn btn-success change-pic-btn">更换头像</label>
+					<input id="up-pic" class="change-photo-btn" type="file" accept="image/jpg,image/png,image/jpeg,image/bmp" style="position: absolute; left: -9999px">
+				</div>
+				<div class="other-info">
+					<form class="form-horizontal" role="form">
+						<div class="form-group">
+							<label for="name" class="col-sm-2 col-md-2 control-label">用户名</label>
+							<div class="col-sm-8 col-md-8">
+								<input type="text" class="form-control" id="name" placeholder="请输入名字">
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="QQ" class="col-sm-2 col-md-2 control-label">QQ</label>
+							<div class="col-sm-8 col-md-8">
+								<input type="text" class="form-control" id="QQ" placeholder="请输入QQ号码">
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="school" class="col-sm-2 col-md-2 control-label">学校</label>
+							<div class="col-sm-8 col-md-8">
+								<input type="text" class="form-control" id="school" placeholder="请输入学校名称">
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="class" class="col-sm-2 col-md-2 control-label">专业</label>
+							<div class="col-sm-8 col-md-8">
+								<input type="text" class="form-control" id="class" placeholder="请输入专业名称">
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="col-sm-offset-2 col-sm-10">
+								<button type="submit" class="btn btn-success btn-lg submit-info">保存信息</button>
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
 	<script src="../js/jquery.min.js"></script>
-	<script>
-		$(".sideBar li").click(function(){
-			$('.contTitle').html($(this).text().trim());
-			$('.sideBar a').removeClass('active');
-			$(this).children('a').addClass('active');
-		})
+	<script src="../js/jquery.cookie.js"></script>
+	<script src="../js/bootstrap.min.js"></script>
+	<script src="../js/template-web.js"></script>
+	<script type="text/javascript" src="../js/buycart.js"></script>
+	<script id="my-xianzhi-template" type="text/html">
+		{{each model}}
+		<div class="col-md-3 col-sm-3 col-xs-6">
+			<div class="card col-md-10 col-sm-10 col-xs-10" onclick="getItemDetail($(this).attr('data-id'))" data-id={{$value.id}}>
+				<div class="card-image">
+					<img id="src" src="../images/4.jpg" />
+					<!--<img src="{{$value.imgUrl.split(';')[0]}}" />-->
+				</div>
+				<div class="card-content">
+					<h4 class="name" title={{$value.name}}>二手刘瑞东</h4>
+					<div class="row">
+						<span class="col-md-5 col-xs-5 col-sm-5 price">0.01<span class="real-price">100</span></span>
+						<span class="col-md-7 col-xs-7 col-sm-7 time text-right">2019.4.1</span>
+					</div>
+				</div>
+			</div>
+		</div>
+		{{/each}}
+	</script>
+	<script id="my-qiugou-template" type="text/html">
+		{{each model}}
+		<div class="col-md-3 col-sm-3 col-xs-6">
+			<div class="card col-md-10 col-sm-10 col-xs-10" onclick="getItemDetail($(this).attr('data-id'))" data-id={{$value.id}}>
+				<div class="card-image">
+					<img src="../images/4.jpg" />
+					<!--<img src="{{$value.imgUrl.split(';')[0]}}" />-->
+				</div>
+				<div class="card-contet">
+					<h4 class="name">求购一只刘瑞猪</h4>
+					<div class="row">
+						<span class="col-md-5 col-xs-5 col-sm-5 catelog">其它闲置</span>
+						<span class="col-md-6 col-xs-5 col-sm-7 time text-right">2019.4.1</span>
+					</div>
+				</div>
+			</div>
+		</div>
+		{{/each}}
+	</script>
+	<script id="type_goods_temp" type="text/html">
+		{{each model}}
+		<tr goodId={{$value.id}} >
+			<td class="checkbox"><input class="check-one check" type="checkbox"/></td>
+			<td class="goods"><img src="{{$value.imgUrl.split(';')[0]}}"/><span>{{$value.name}}</span></td>
+			<td class="price">{{$value.price}}</td>
+			<!--<td class="count"><span class="reduce"></span><input class="count-input" type="text" value="1"/><span class="add">+</span></td>-->
+			<td class="count"><input class="count-input" type="text" value="1" readonly/></td>
+			<td class="subtotal">{{$value.price}}</td>
+			<td class="operation"><span class="delete">删除</span></td>
+		</tr>
+		{{/each}}
 	</script>
 
 	</body>

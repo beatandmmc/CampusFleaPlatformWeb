@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>后台用户中心</title>
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/font-awesome.min.css" />
+    <link rel="stylesheet" type="text/css" href="../css/iconfont.css" />
+    <style>
+        .container{padding-top:10px}
+        body {
+            padding-top: 150px;
+            background: no-repeat url(../img/info-bg.jpg);
+            background-size: cover;
+        }
+        body a{
+            color: #62ab00;
+        }
+        body a:hover,a:visited, a:link, a:active{
+            color: #62ab00;
+            text-decoration: none;
+        }
+
+        .xust-header{
+            padding: 5px 30px 5px 0;
+            /*background: #ffffff;*/
+            box-shadow: #666 0 0 10px;
+            background-color: #62ab00;
+        }
+        .btn-download {
+            margin-top: 7px;
+            padding-right: 20px;
+        }
+        .btn-download button {
+            margin-right: 10px;
+        }
+        body .xust-title {
+            color: #222222;
+            font-size: 22px;
+            font-weight: bold;
+        }
+        .xust-title:hover{
+            color: #222222;
+        }
+        .xust{
+            color: #ffffff;
+            padding-left: 4px;
+            font-size: 24px;
+        }
+        .xust-en {
+            color: #ffffff;
+            font-size: 16px;
+            padding-left: 5px;
+            margin-right: 50px;
+        }
+        .my-home{
+            color: #ffffff;
+            font-size: 28px;
+        }
+        .done{
+            display: none;
+        }
+        .main{
+            width: 1000px;
+            height: 800px;
+            background: rgba(255,255,255,0.8);
+            margin: 0 auto;
+            position: relative;
+            padding-top: 150px;
+        }
+        .pic-box{
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translate(-50%,-30%);
+        }
+        .change-pic-btn{
+            margin-top: 30px;
+            margin-left: 2px;
+            font-size: 16px;
+
+        }
+
+        .pic{
+
+        }
+        .banner{
+            width: 100%;
+            height: 100px;
+            text-align: center;
+        }
+        .banner .title{
+            color: #004d40;
+            font-size: 20px;
+        }
+        
+
+    </style>
+</head>
+<body>
+<div id="cover" style="min-height: 639px;">
+    <!-----header部分------->
+    <div class="container-fluid">
+        <!--顶部菜单栏-->
+        <div class="row xust-top">
+            <nav class="navbar navbar-fixed-top xust-header" role="navigation" id="xust-nav">
+                <div class="navbar-header">
+                    <a class="navbar-brand xust-title" href="homepage.html"><i class="fa fa-home my-home" aria-hidden="true"></i><span class="xust">西科大 </span>二手工坊 <span class="xust-en">xust.market</span></a>
+                </div>
+
+
+                <div class="navbar-right btn-download">
+                    <div class="done">
+                        <button class="btn btn-primary" id="username"><i class="fa fa-user-o"></i><span id="user"></span></button>
+                        <a class="exit" data-toggle="modal" href="#myModal">退出</a>
+                    </div>
+                    <div class="undone">
+                        <button id="userSubmit" type="button" class="btn btn-success" hidden="hidden">登录</button>
+                        <button id="register" type="button" class="btn btn-success" hidden="hidden">注册</button>
+                    </div>
+                </div>
+
+            </nav>
+        </div>
+    </div>
+    <!-----header结束------->
+    <div class="main">
+        <div class="pic-box">
+            <div class="pic">
+                <img src="../images/user_face.jpg" class="img-circle">
+            </div>
+            <label for="up-pic" class="btn btn-success change-pic-btn">更换头像</label>
+            <input id="up-pic" class="change-photo-btn" type="file" accept="image/jpg,image/png,image/jpeg,image/bmp" style="position: absolute; left: -9999px">
+        </div>
+        <div class="other-info">
+            <form class="form-horizontal" role="form">
+                <div class="form-group">
+                    <label for="name" class="col-sm-2 col-md-2 control-label">用户名</label>
+                    <div class="col-sm-8 col-md-8">
+                        <input type="text" class="form-control" id="name" placeholder="请输入名字">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="QQ" class="col-sm-2 col-md-2 control-label">QQ</label>
+                    <div class="col-sm-8 col-md-8">
+                        <input type="text" class="form-control" id="QQ" placeholder="请输入QQ号码">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="school" class="col-sm-2 col-md-2 control-label">学校</label>
+                    <div class="col-sm-8 col-md-8">
+                        <input type="text" class="form-control" id="school" placeholder="请输入学校名称">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="class" class="col-sm-2 col-md-2 control-label">专业</label>
+                    <div class="col-sm-8 col-md-8">
+                        <input type="text" class="form-control" id="class" placeholder="请输入专业名称">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-10">
+                        <button type="submit" class="btn btn-success">保存信息</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+</div>
+<script src="../js/jquery.min.js"></script>
+<script>
+    $(".sideBar li").click(function(){
+        $('.contTitle').html($(this).text().trim());
+        $('.sideBar a').removeClass('active');
+        $(this).children('a').addClass('active');
+    })
+</script>
+
+</body>
+
+</html>

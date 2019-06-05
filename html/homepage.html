@@ -185,7 +185,7 @@
 <script id="type_search_temp" type="text/html">
     {{each model}}
     <div class="col-md-3 col-sm-3 col-xs-6">
-        <div class="card col-md-11 col-sm-11 col-xs-11" id="hha" onclick="getItemDetail($(this).attr('data-id'))" data-id={{$value.id}}>
+        <div class="card col-md-11 col-sm-11 col-xs-11" onclick="getItemDetail($(this).attr('data-id'))" data-id={{$value.id}}>
             <div class="card-image">
                <!--<img id="src" src="{../img/goods.jpg}" />-->
                <img src="{{$value.imgUrl.split(';')[0]}}" />
