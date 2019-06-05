@@ -21,8 +21,6 @@ var fileArr = [];
 //        formData.append("userId",$('#userId').val());
 		formData.append("sessionId",$.cookie('sessionId'));
         formData.append("goodsName",$('#goodsName').val());
-        formData.append("price",$('#price').val());
-        formData.append("realPrice",$('#realPrice').val());
         formData.append("catelogId",$('#catelogId').val());
         formData.append("describle",$('#describle').val());
         $.ajax({
@@ -33,7 +31,7 @@ var fileArr = [];
             processData: false,
             contentType: false,
             success: function (data) {
-            	alert('发布成功！')
+            	alert('求购成功！')
                 window.location.href="homepage.html";
                 console.log(data);
             },
