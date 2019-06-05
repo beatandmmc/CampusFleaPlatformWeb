@@ -223,5 +223,43 @@
     </div>
     {{/each}}
 </script>
+<script id="type_want_temp" type="text/html">
+    {{each model}}
+    <div class="col-md-3 col-sm-3 col-xs-6">
+        <div class="card col-md-11 col-sm-11 col-xs-11" onclick="getWantItemDetail($(this).attr('data-id'))" data-id={{$value.id}}>
+            <div class="card-image">
+               <!--<img id="src" src="{../img/goods.jpg}" />-->
+               <img src="{{$value.imgUrl.split(';')[0]}}" />
+            </div>
+            <div class="card-content">
+            	<div class="row">
+                	<h4 class="name col-md-7 col-xs-7 col-sm-7" title={{$value.name}}>{{$value.name}}</h4>
+                	<div class="catelog col-md-4 col-xs-5 col-sm-5 text-right">
+                		{{if $value.catelogId == 1}}
+                		闲置数码
+                		{{else if $value.catelogId == 2}}
+                		校园代步
+                		{{else if $value.catelogId == 3}}
+                		电器日用
+                		{{else if $value.catelogId == 4}}
+                		图书教材
+                		{{else if $value.catelogId == 5}}
+                		美妆衣物
+                		{{else if $value.catelogId == 6}}
+                		运动棋牌
+                		{{else}}
+                		票券小物
+                		{{/if}}
+                	</div>
+                </div>
+                <div class="row">
+                    <span class="col-md-5 col-xs-5 col-sm-5 price">{{$value.price}}</span>
+                    <span class="col-md-7 col-xs-7 col-sm-7 time text-right">{{$value.startTime}}</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    {{/each}}
+</script>
 </body>
 </html>

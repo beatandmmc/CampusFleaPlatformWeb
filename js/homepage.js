@@ -110,8 +110,8 @@ function wantQuery(){
             	$('.nothing').hide()
             	$('.over').show()
            		$('.catelog-name').html('求购商品');
-	            var search_html = template('type_search_temp', {model:data.data});
-	            $('.goods-list').html(search_html);
+	            var want_html = template('type_want_temp', {model:data.data});
+	            $('.goods-list').html(want_html);
 	            flag_more = false;
             }
             
@@ -276,10 +276,17 @@ function getItemDetail(itemId){
 	//alert(itemId);
 	window.location.href="../html/shopdetail.html?itemId="+itemId;
 	//alert(id)
-	
-	
+}
+function getWantItemDetail(itemId){
+	//alert(itemId);
+	var itemId = itemId;
+	//alert(itemId);
+	window.location.href="../html/wantshopdetail.html?itemId="+itemId;
+	//alert(id)
 }
 
 
 
-
+$('#user').click(function(){
+	window.location.href='../html/personalCenter.html'
+})
