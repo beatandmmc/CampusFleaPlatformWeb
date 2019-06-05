@@ -81,6 +81,50 @@ function searchQuery(str){
    });
 }
 
+
+//求购
+$('.want-center').click(function(){
+	var str = $('.search-text').val()
+	wantQuery()
+});
+
+function wantQuery(){
+		$.ajax({
+    	//url :'http://39.107.247.211:8080/CampusFleaPlatform_war/goods/catelog',
+    	url :'http://192.168.43.213:8080/wantgoods/selectWantGoods',
+        type: 'GET',
+        async:true,
+        dataType: 'jsonp',
+        jsonp: 'callback',
+        timeout: 5000,
+        
+        success: function(data) {
+        	console.log(data)
+            if(data.data.length == 0){
+            	console.log('meide')
+            	$('.catelog-name').html('最新发布');
+            	$('.nothing').show()
+            	$('.over').hide()
+            	newGoods()
+            }else{
+            	$('.nothing').hide()
+            	$('.over').show()
+           		$('.catelog-name').html('求购商品');
+	            var search_html = template('type_search_temp', {model:data.data});
+	            $('.goods-list').html(search_html);
+	            flag_more = false;
+            }
+            
+            
+        },
+        error:function(){
+            console.log("求购error")
+        }
+   });
+}
+
+
+
 function getUserName(){
 //	console.log($.cookie('sessionId'));
 //	console.log(typeof($.cookie('sessionId')));

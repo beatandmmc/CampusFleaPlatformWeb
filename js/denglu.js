@@ -10,6 +10,8 @@ var timer = null;
 var number = 60;
 var bOnOff = true;
 var sId = "";
+var m = true;
+var bm = true;
 new Vue({
 		el: "#vue-user",
 		data: {
@@ -43,7 +45,8 @@ new Vue({
 				}
 			},
 			getid: function() {
-				if(b == true && $("#username").val().length != 0) {
+				
+				if(bm == true && b == true && $("#username").val().length != 0) {
 					$.ajax({
 						type: "get",
 						url: "http://localhost:8080/user/getTelCode",
@@ -53,9 +56,8 @@ new Vue({
 							"userPhone": $("#username").val()
 						},
 						success: function(data) {
-							if(data.status == "none") {
-								alert("该用户未注册");
-							} else {
+							if(data.msg=="succ"){
+								b=true;
 								sId = data.sessionId;
 								if(bOnOff) {
 									bOnOff = false;
@@ -74,9 +76,13 @@ new Vue({
 									}, 1000);
 								}
 
+							}else{
+								b=false;
 							}
+								
 						},
 						error: function() {
+							b = false;
 							alert("请求失败");
 						}
 					});
@@ -85,11 +91,45 @@ new Vue({
 				}
 
 			},
+			phone:function(){
+				var str=$("#username").val();
+			    var re3=/^[1][3,4,5,7,8][0-9]{9}$/;
+				if(!re3.test(str)){
+		      		$(".prompt").css("display","block");
+		      		
+		      		m=false;
+		      		return false;
+				}else{
+				    $(".prompt").css("display","none");
+				   
+				    m=true;
+				    $.ajax({
+						type:"get",
+						url:"http://localhost:8080/user/checkPhone",
+						dataType:"jsonp",
+				  	    jsonp:"callback",
+						data:{"userPhone":$("#phone").val()},
+						success:function(data1){
+							if(data1.code=="no"){
+							  bm=false;
+							  alert("手机号未注册");
+							}else{
+							  
+							  bm=true;
+							}
+						},
+						error:function(){
+							alert("手机号请求失败");
+						}
+					});
+				}
+			},
 			submit: function() {
 				if($('#btn-number').val() == "验证码登录") {
 					if($("#username").val().length == 0 || $("#password").val().length == 0) {
 						alert("手机号/密码不能为空");
-					} else if(b == false) {;
+					} else if(b == false) {
+						;
 					} else {
 						$.ajax({
 							type: "get",
@@ -117,8 +157,7 @@ new Vue({
 				} else if($('#btn-number').val() == "密码登录") {
 					if($("#username").val().length == 0 || $("#code").val().length == 0) {
 						alert("手机号/密码不能为空");
-					} else if(b == false) {;
-					} else {
+					} else if(b==true&&m==true&&bm==true){
 						$.ajax({
 							type: "get",
 							url: "http://localhost:8080/user/plogin",

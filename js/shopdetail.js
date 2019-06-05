@@ -150,7 +150,7 @@ function addToCart(){
         success:function(data) {
         	console.log(data);
             if(data.code=="true"){
-            	console.log("加入成功"); 	
+            	alert("加入成功"); 	
             }
         },
         error:function(){

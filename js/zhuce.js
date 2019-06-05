@@ -3,9 +3,12 @@ changeRootFont();
          document.documentElement.style.fontSize = ((window.innerWidth / 750) * 100) + 'px';
           } 
          window.addEventListener('resize', changeRootFont, false)
+//验证手机号是否合规         
 var b=true;
 var m= true;
+//手机号未注册
 var bm=true;
+//邮箱
 var by=true;
 new Vue({
 	el:"#vue-form",
@@ -24,36 +27,36 @@ new Vue({
 				      		    b=true;
 					      	}
 		},
-		email:function(){
-			var str =$("#E-mail").val();
-//			var re2 = /^([a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+((\.[a-zA-Z0-9_-]{2,3}){1,2})$/;
-			var re2 = /^[a-zA-Z0-9]{10}$/;
-			if(!re2.test(str)||$("#E-mail").val().length==0){
-					      		$(".email").css("display","block");
-					      		b=false;
-					      		return false;
-					      	}else{
-				      		    $(".email").css("display","none");
-//				      		    $.ajax({
-//				      		    	type:"get",
-//				      		    	url:"http://localhost:8080/checkEmailController/checkEmail",
-//				      		    	dataType:"jsonp",
-//			  	                    jsonp:"jsonpCallback",
-//				      		    	data:{"userEmail":$("#E-mail").val()},
-//				      		    	success:function(data){
-//                                      if(data.suc==0){
-//				      		    			by=true;
-//				      		    		}else{
-//				      		    			alert("该邮箱已经被注册过");
-//				      		    			by=false;
-//					      		        }
-//				      		    	},
-//				      		    	error:function(){
-//				      		    		alert("邮箱请求失败")
-//				      		    	}
-//				      		    });
-					      	}
-		},
+//		email:function(){
+//			var str =$("#E-mail").val();
+////			var re2 = /^([a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+((\.[a-zA-Z0-9_-]{2,3}){1,2})$/;
+//			var re2 = /^[a-zA-Z0-9]{10}$/;
+//			if(!re2.test(str)||$("#E-mail").val().length==0){
+//					      		$(".email").css("display","block");
+//					      		b=false;
+//					      		return false;
+//					      	}else{
+//				      		    $(".email").css("display","none");
+////				      		    $.ajax({
+////				      		    	type:"get",
+////				      		    	url:"http://localhost:8080/checkEmailController/checkEmail",
+////				      		    	dataType:"jsonp",
+////			  	                    jsonp:"jsonpCallback",
+////				      		    	data:{"userEmail":$("#E-mail").val()},
+////				      		    	success:function(data){
+////                                      if(data.suc==0){
+////				      		    			by=true;
+////				      		    		}else{
+////				      		    			alert("该邮箱已经被注册过");
+////				      		    			by=false;
+////					      		        }
+////				      		    	},
+////				      		    	error:function(){
+////				      		    		alert("邮箱请求失败")
+////				      		    	}
+////				      		    });
+//					      	}
+//		},
 		phone:function(){
 			 var str=$("#phone").val();
 		     var re3=/^[1][3,4,5,7,8][0-9]{9}$/;
@@ -68,13 +71,14 @@ new Vue({
 			    m=true;
 			    $.ajax({
 					type:"get",
-					url:"http://localhost:8080/checkPhoneController/checkPhone",
+					url:"http://localhost:8080/user/checkPhone",
 					dataType:"jsonp",
-			  	    jsonp:"jsonpCallback",
+			  	    jsonp:"callback",
 					data:{"userPhone":$("#phone").val()},
 					success:function(data1){
-						if(data1.suc==1){
+						if(data1.code=="no"){
 						  bm=true;	
+						  alert("手机号校验成功")
 						}else{
 						  alert("该手机号已经被注册");
 						  bm=false;
@@ -86,18 +90,18 @@ new Vue({
 				});
 			}
 		},
-		userClass:function(){
-			var str=$("#userClass").val();
-		    var re4=/^[+]{0,1}(\d+)$/;
-			if(!re4.test(str)||$("#userClass").val().length==0){
-					      		$(".userClass").css("display","block");
-					      		b=false;
-					      		return false;
-					      	}else{
-				      		    $(".userClass").css("display","none");
-				      		    b=true;
-					      	}
-		},
+//		userClass:function(){
+//			var str=$("#userClass").val();
+//		    var re4=/^[+]{0,1}(\d+)$/;
+//			if(!re4.test(str)||$("#userClass").val().length==0){
+//					      		$(".userClass").css("display","block");
+//					      		b=false;
+//					      		return false;
+//					      	}else{
+//				      		    $(".userClass").css("display","none");
+//				      		    b=true;
+//					      	}
+//		},
 		pwd:function(){
 			var str=$("#pwd").val();
 			var re5=/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[a-zA-Z\d]{8,16}$/;
@@ -111,19 +115,19 @@ new Vue({
 					      	}
 		},
 		getid: function() {
-			if(b == true && $("#phone").val().length != 0) {
+			if(b == true && $("#phone").val().length != 0 &&m==true&&bm==true){
 				$.ajax({
 					type: "get",
 					url: "http://localhost:8080/user/getTelCode",
 					dataType: "jsonp",
 					jsonp: "callback",
 					data: {
-						"userPhone": $("#username").val()
+						"userPhone": $("#phone").val()
 					},
 					success: function(data) {
 						//不存在
-						if(data.status == "done") {
-							alert("该手机号已被注册");
+						if(data.msg == "fail") {
+							alert("获取验证码失败了");
 						} else {
 							sId = data.sessionId;
 							if(bOnOff) {
@@ -245,12 +249,12 @@ $("#sub").click(function(){
 	  //var speciality =$("#province").val()+"-"+$("#city").val();
 	  $.ajax({
 	    	type:"get",
-	    	url:"http://localhost:8080/register/doRegister",
+	    	url:"http://localhost:8080/user/register",
 	    	dataType:"jsonp",
-			jsonp:"jsonpCallback",
+			jsonp:"callback",
 	data:{"username":$("#name").val(),"sessionId":sId,"sex":sex,"qq":$("#QQ").val(), "phone":$("#phone").val(),"password":$("#pwd").val(),"code":$("#number").val()},
 	    	success:function(data1){
-	    		if(data1.suc==0){
+	    		if(data1.code=="true"){
 	    			window.location.href="denglu.html";
 	    		}else{
 	    			alert("验证码错误");
@@ -320,42 +324,42 @@ $("#sub").click(function(){
 
     list2[list2.length] = new Array("其他");
  
-    var ddlProvince = document.getElementById("province");
-    var ddlCity = document.getElementById("city");
-    for(var i =0;i<list1.length; i++)
-    {
-        var option = document.createElement("option");
-        option.appendChild(document.createTextNode(list1[i]));
-        option.value = list1[i];
-        ddlProvince.appendChild(option);
-        //city initialize
-        var firstprovince = list2[0];
-        for (var j = 0; j < firstprovince.length; j++) {
-            var optioncity = document.createElement("option");
-            optioncity.appendChild(document.createTextNode(firstprovince[j]));
-            optioncity.value = firstprovince[j];
-            ddlCity.appendChild(optioncity);
-        }
-    }
-    function indexof(obj,value)
-    {
-        var k=0;
-        for(;k<obj.length;k++)
-        {
-            if(obj[k] == value)
-            return k;
-        }
-        return k;
-    }
-    function selectprovince(obj) {
-        ddlCity.options.length = 0;//clear
-        var index = indexof(list1,obj.value);
-        var list2element = list2[index];
-        for(var i =0;i<list2element.length; i++)
-        {
-            var option = document.createElement("option");
-            option.appendChild(document.createTextNode(list2element[i]));
-            option.value = list2element[i];
-            ddlCity.appendChild(option);
-        }
-    }
+//  var ddlProvince = document.getElementById("province");
+//  var ddlCity = document.getElementById("city");
+//  for(var i =0;i<list1.length; i++)
+//  {
+//      var option = document.createElement("option");
+//      option.appendChild(document.createTextNode(list1[i]));
+//      option.value = list1[i];
+//      ddlProvince.appendChild(option);
+//      //city initialize
+//      var firstprovince = list2[0];
+//      for (var j = 0; j < firstprovince.length; j++) {
+//          var optioncity = document.createElement("option");
+//          optioncity.appendChild(document.createTextNode(firstprovince[j]));
+//          optioncity.value = firstprovince[j];
+//          ddlCity.appendChild(optioncity);
+//      }
+//  }
+//  function indexof(obj,value)
+//  {
+//      var k=0;
+//      for(;k<obj.length;k++)
+//      {
+//          if(obj[k] == value)
+//          return k;
+//      }
+//      return k;
+//  }
+//  function selectprovince(obj) {
+//      ddlCity.options.length = 0;//clear
+//      var index = indexof(list1,obj.value);
+//      var list2element = list2[index];
+//      for(var i =0;i<list2element.length; i++)
+//      {
+//          var option = document.createElement("option");
+//          option.appendChild(document.createTextNode(list2element[i]));
+//          option.value = list2element[i];
+//          ddlCity.appendChild(option);
+//      }
+//  }

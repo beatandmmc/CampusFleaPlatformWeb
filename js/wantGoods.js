@@ -24,14 +24,14 @@ var fileArr = [];
         formData.append("catelogId",$('#catelogId').val());
         formData.append("describle",$('#describle').val());
         $.ajax({
-            url :'http://192.168.43.213:8080/goods/publishGoods',
+            url :'http://192.168.43.213:8080/wantgoods/publishwantGoods',
             type: 'POST',
             async: true,
             data:formData,
             processData: false,
             contentType: false,
             success: function (data) {
-            	alert('求购成功！')
+            	alert('求购商品发布成功！')
                 window.location.href="homepage.html";
                 console.log(data);
             },
