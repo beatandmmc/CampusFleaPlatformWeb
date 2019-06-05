@@ -195,8 +195,8 @@
 					</li>
 					<li>
 						<a href="#buycart" data-toggle="tab">
-							<i class="fa fa-heart-o"></i>
-							我的购物车
+							<i class="fa fa-opencart"></i>
+							购物车
 						</a>
 					</li>
 					<li>
@@ -228,7 +228,39 @@
 					</div>
 					<!-- 我的求购-->
 					<div class="tab-pane row fade goods-list" id="qiugou">
-
+						<div class="col-md-3 col-sm-3 col-xs-6">
+							<div class="card col-md-10 col-sm-10 col-xs-10" onclick="getItemDetail($(this).attr('data-id'))" data-id={{$value.id}}>
+								<div class="card-image">
+									<img src="../images/4.jpg" />
+									<!--<img src="{{$value.imgUrl.split(';')[0]}}" />-->
+								</div>
+								<div class="card-content">
+									<h4 class="name">求购一只刘瑞猪</h4>
+									<div class="row">
+										<span class="col-md-5 col-xs-5 col-sm-5 catelog">其它闲置</span>
+										<span class="col-md-6 col-xs-5 col-sm-7 time text-right">2019.4.1</span>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="col-md-3 col-sm-3 col-xs-6">
+							<div class="card col-md-10 col-sm-10 col-xs-10 " onclick="getItemDetail($(this).attr('data-id'))" data-id={{$value.id}} goods-type = '1'>
+								<div class="card-image">
+									<img src="../images/4.jpg" />
+									<!--<img src="{{$value.imgUrl.split(';')[0]}}" />-->
+								</div>
+								<div class="card-content">
+									<h4 class="name">求购一只刘瑞猪</h4>
+									<div class="row">
+										<span class="col-md-5 col-xs-5 col-sm-5 catelog">其它闲置</span>
+										<span class="col-md-6 col-xs-5 col-sm-7 time text-right">2019.4.1</span>
+									</div>
+								</div>
+								<div class="selled col-md-12 col-sm-12 col-xs-12 ">
+									<div class="sell-text">已售出</div>
+								</div>
+							</div>
+						</div>
 					</div>
 
 					<div class="tab-pane row fade goods-list" id="dizhi">
@@ -249,38 +281,7 @@
 								</tr>
 								</thead>
 								<tbody>
-								<!--<tr>-->
-								<!--<td class="checkbox"><input class="check-one check" type="checkbox"/></td>-->
-								<!--<td class="goods"><img src="images/1.jpg" alt=""/><span>Casio/卡西欧 EX-TR350</span></td>-->
-								<!--<td class="price">5999.88</td>-->
-								<!--<td class="count"><span class="reduce"></span><input class="count-input" type="text" value="1"/><span class="add">+</span></td>-->
-								<!--<td class="subtotal">5999.88</td>-->
-								<!--<td class="operation"><span class="delete">删除</span></td>-->
-								<!--</tr>-->
-								<!--<tr>-->
-								<!--<td class="checkbox"><input class="check-one check" type="checkbox"/></td>-->
-								<!--<td class="goods"><img src="images/2.jpg" alt=""/><span>Canon/佳能 PowerShot SX50 HS</span></td>-->
-								<!--<td class="price">3888.50</td>-->
-								<!--<td class="count"><span class="reduce"></span><input class="count-input" type="text" value="1"/><span class="add">+</span></td>-->
-								<!--<td class="subtotal">3888.50</td>-->
-								<!--<td class="operation"><span class="delete">删除</span></td>-->
-								<!--</tr>-->
-								<!--<tr>-->
-								<!--<td class="checkbox"><input class="check-one check" type="checkbox"/></td>-->
-								<!--<td class="goods"><img src="images/3.jpg" alt=""/><span>Sony/索尼 DSC-WX300</span></td>-->
-								<!--<td class="price">1428.50</td>-->
-								<!--<td class="count"><span class="reduce"></span><input class="count-input" type="text" value="1"/><span class="add">+</span></td>-->
-								<!--<td class="subtotal">1428.50</td>-->
-								<!--<td class="operation"><span class="delete">删除</span></td>-->
-								<!--</tr>-->
-								<!--<tr>-->
-								<!--<td class="checkbox"><input class="check-one check" type="checkbox"/></td>-->
-								<!--<td class="goods"><img src="images/4.jpg" alt=""/><span>Fujifilm/富士 instax mini 25</span></td>-->
-								<!--<td class="price">640.60</td>-->
-								<!--<td class="count"><span class="reduce"></span><input class="count-input" type="text" value="1"/><span class="add">+</span></td>-->
-								<!--<td class="subtotal">640.60</td>-->
-								<!--<td class="operation"><span class="delete">删除</span></td>-->
-								<!--</tr>-->
+
 								</tbody>
 							</table>
 
@@ -368,7 +369,8 @@
 	<script src="../js/jquery.cookie.js"></script>
 	<script src="../js/bootstrap.min.js"></script>
 	<script src="../js/template-web.js"></script>
-	<script type="text/javascript" src="../js/buycart.js"></script>
+	<script src="../js/buycart.js"></script>
+	<script src="../js/personalCenter.js"></script>
 	<script id="my-xianzhi-template" type="text/html">
 		{{each model}}
 		<div class="col-md-3 col-sm-3 col-xs-6">

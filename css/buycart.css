@@ -14,7 +14,7 @@ clearfix:after{content:".";display:block;height:0;clear:both;visibility:hidden}
 .catbox{width:940px;margin:0 auto;}
 .catbox table{text-align:center;width:100%;}
 .catbox table th,.catbox table td{border:1px solid #62ab00;}
-.catbox table th{background:#e2f2ff;border-top:3px solid #a7cbff;height:30px;}
+.catbox table th{background:#62ab00;border-top:3px solid #38970f;height:30px; color: #fff;}
 .catbox table td{padding:10px;color:#444;}
 .catbox table tbody tr:hover{background:RGB(238,246,255);}
 .checkbox{width:60px;}
@@ -33,7 +33,7 @@ clearfix:after{content:".";display:block;height:0;clear:both;visibility:hidden}
 .foot{margin-top:10px;color:#666;height:48px;border:1px solid #c8c8c8;background-color:#eaeaea;background-image:linear-gradient(RGB(241,241,241),RGB(226,226,226));position:relative;z-index:8;}
 .foot div, .foot a{line-height:48px;height:48px;}
 .foot .select-all{width:100px;height:48px;line-height:48px;padding-left:5px;color:#666;}
-.foot .closing{border-left:1px solid #c8c8c8;width:100px;text-align:center;color:#000;font-weight:bold;background:RGB(238,238,238);cursor:pointer;}
+.foot .closing{border-left:1px solid #c8c8c8;width:100px;text-align:center;color:#FFF;font-weight:bold;background:#62ab00; cursor:pointer;}
 .foot .total{margin:0 20px;cursor:pointer;}
 .foot  #priceTotal, .foot #selectedTotal{color:red;font-family:"Microsoft Yahei";font-weight:bold;}
 .foot .selected{cursor:pointer;}

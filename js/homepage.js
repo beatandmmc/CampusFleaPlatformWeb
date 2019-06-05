@@ -165,7 +165,7 @@ function getUserName(){
 }
 function getGoods(catelogid){
 	$('.over').hide();
-	$('.nothing').hide()
+	$('.nothing').hide();
     flag_more = true;
     $.ajax({
         //url :'http://39.107.247.211:8080/CampusFleaPlatform_war/goods/catelog',
@@ -289,4 +289,4 @@ function getWantItemDetail(itemId){
 
 $('#user').click(function(){
 	window.location.href='../html/personalCenter.html'
-})
+});
