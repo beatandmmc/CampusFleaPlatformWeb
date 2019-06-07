@@ -175,13 +175,13 @@
 		<div class="main w1200">
 			<div class="left">
 				<ul class="sideBar">
-					<li>
+					<li class="xianzhi">
 						<a href="#xianzhi" data-toggle="tab" class="active">
 							<i class="fa fa-folder-open-o" style="width: 26px;"></i>
 							我的闲置
 						</a>
 					</li>
-					<li>
+					<li class="qiugou">
 						<a href="#qiugou" data-toggle="tab">
 							<i class="fa fa-file-text-o" style="width: 26px;"></i>
 							我的求购
@@ -193,7 +193,7 @@
 							地址管理
 						</a>
 					</li>
-					<li>
+					<li class="buycart">
 						<a href="#buycart" data-toggle="tab">
 							<i class="fa fa-opencart"></i>
 							购物车
@@ -228,26 +228,11 @@
 					</div>
 					<!-- 我的求购-->
 					<div class="tab-pane row fade goods-list" id="qiugou">
-						<div class="col-md-3 col-sm-3 col-xs-6">
-							<div class="card col-md-10 col-sm-10 col-xs-10" onclick="getItemDetail($(this).attr('data-id'))" data-id={{$value.id}}>
-								<div class="card-image">
-									<img src="../images/4.jpg" />
-									<!--<img src="{{$value.imgUrl.split(';')[0]}}" />-->
-								</div>
-								<div class="card-content">
-									<h4 class="name">求购一只刘瑞猪</h4>
-									<div class="row">
-										<span class="col-md-5 col-xs-5 col-sm-5 catelog">其它闲置</span>
-										<span class="col-md-6 col-xs-5 col-sm-7 time text-right">2019.4.1</span>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="col-md-3 col-sm-3 col-xs-6">
+						
+						<!--<div class="col-md-3 col-sm-3 col-xs-6">
 							<div class="card col-md-10 col-sm-10 col-xs-10 " onclick="getItemDetail($(this).attr('data-id'))" data-id={{$value.id}} goods-type = '1'>
 								<div class="card-image">
 									<img src="../images/4.jpg" />
-									<!--<img src="{{$value.imgUrl.split(';')[0]}}" />-->
 								</div>
 								<div class="card-content">
 									<h4 class="name">求购一只刘瑞猪</h4>
@@ -260,7 +245,7 @@
 									<div class="sell-text">已售出</div>
 								</div>
 							</div>
-						</div>
+						</div>-->
 					</div>
 
 					<div class="tab-pane row fade goods-list" id="dizhi">
@@ -369,47 +354,65 @@
 	<script src="../js/jquery.cookie.js"></script>
 	<script src="../js/bootstrap.min.js"></script>
 	<script src="../js/template-web.js"></script>
-	<script src="../js/buycart.js"></script>
+	
 	<script src="../js/personalCenter.js"></script>
+	<!--<script src="../js/buycart.js"></script>-->
 	<script id="my-xianzhi-template" type="text/html">
 		{{each model}}
 		<div class="col-md-3 col-sm-3 col-xs-6">
 			<div class="card col-md-10 col-sm-10 col-xs-10" onclick="getItemDetail($(this).attr('data-id'))" data-id={{$value.id}}>
 				<div class="card-image">
-					<img id="src" src="../images/4.jpg" />
-					<!--<img src="{{$value.imgUrl.split(';')[0]}}" />-->
+					<!--<img id="src" src="../images/4.jpg" />-->
+					<img src="{{$value.imgUrl.split(';')[0]}}" />
 				</div>
 				<div class="card-content">
-					<h4 class="name" title={{$value.name}}>二手刘瑞东</h4>
+					<h4 class="name" title={{$value.name}}>{{$value.name}}</h4>
 					<div class="row">
-						<span class="col-md-5 col-xs-5 col-sm-5 price">0.01<span class="real-price">100</span></span>
-						<span class="col-md-7 col-xs-7 col-sm-7 time text-right">2019.4.1</span>
+						<span class="col-md-5 col-xs-5 col-sm-5 price">0.01<span class="real-price">{{$value.price}}</span></span>
+						<span class="col-md-7 col-xs-7 col-sm-7 time text-right">{{$value.startTime}}</span>
 					</div>
 				</div>
 			</div>
 		</div>
 		{{/each}}
 	</script>
+	<!--求购模板-->
 	<script id="my-qiugou-template" type="text/html">
 		{{each model}}
 		<div class="col-md-3 col-sm-3 col-xs-6">
-			<div class="card col-md-10 col-sm-10 col-xs-10" onclick="getItemDetail($(this).attr('data-id'))" data-id={{$value.id}}>
+			<div class="card col-md-10 col-sm-10 col-xs-10" onclick="getwantItemDetail($(this).attr('data-id'))" data-id={{$value.id}}>
 				<div class="card-image">
-					<img src="../images/4.jpg" />
-					<!--<img src="{{$value.imgUrl.split(';')[0]}}" />-->
+					<!--<img src="../images/4.jpg" />-->
+					<img src="{{$value.imgUrl.split(';')[0]}}" />
 				</div>
-				<div class="card-contet">
-					<h4 class="name">求购一只刘瑞猪</h4>
+				<div class="card-content">
+					<h4 class="name">{{$value.name}}</h4>
 					<div class="row">
-						<span class="col-md-5 col-xs-5 col-sm-5 catelog">其它闲置</span>
-						<span class="col-md-6 col-xs-5 col-sm-7 time text-right">2019.4.1</span>
+						<span class="col-md-5 col-xs-5 col-sm-5 catelog">
+                		{{if $value.catelogId == 1}}
+                		闲置数码
+                		{{else if $value.catelogId == 2}}
+                		校园代步
+                		{{else if $value.catelogId == 3}}
+                		电器日用
+                		{{else if $value.catelogId == 4}}
+                		图书教材
+                		{{else if $value.catelogId == 5}}
+                		美妆衣物
+                		{{else if $value.catelogId == 6}}
+                		运动棋牌
+                		{{else}}
+                		票券小物
+                		{{/if}}
+						</span>
+						<span class="col-md-6 col-xs-5 col-sm-7 time text-right">{{$value.startTime}}</span>
 					</div>
 				</div>
 			</div>
 		</div>
 		{{/each}}
 	</script>
-	<script id="type_goods_temp" type="text/html">
+	<script id="my-buycart-temp" type="text/html">
 		{{each model}}
 		<tr goodId={{$value.id}} >
 			<td class="checkbox"><input class="check-one check" type="checkbox"/></td>

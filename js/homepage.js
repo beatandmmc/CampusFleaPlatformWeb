@@ -246,9 +246,9 @@ $(document).on("scroll",function(){
     }
 });
 
-$('.publish').click(function(){
-    location.href = '../html/pubGoods.html'
-});
+//$('.publish').click(function(){
+//  location.href = '../html/pubGoods.html'
+//});
 $("#quit").click(function(){
 		window.location.href="homepage.html";
 		//清除所有cookie函数
@@ -269,6 +269,10 @@ $("#register").click(function(){
 /*$("#item").click(function(){
 	alert("hahha");
 })*/
+$("#buycart-btn").click(function(){
+	window.location.href="buycart.html";
+});
+
 
 function getItemDetail(itemId){
 	//alert(itemId);

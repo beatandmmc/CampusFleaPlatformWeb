@@ -41,9 +41,28 @@
                
                 <!--<button type="button" class="btn btn-primary">注册</button>-->
             <!--</div>-->
+            <button id="buycart-btn" class='btn btn-download'><i class="fa fa-opencart"></i>购物车</button>
             <div class="navbar-right btn-download">
+        
             	<div class="done">
-            		<button type="button" class="btn btn-primary btn-info publish">我要发布</button>
+            		<div type="button" class="dropdown btn btn-primary btn-info publish">
+            		
+            			<a href="#" class="dropdown-toggle" data-toggle="dropdown">我要发布
+		                    <b class="caret"></b>
+		                </a>
+			            <ul class="dropdown-menu">
+			                    <li>
+			                        <a id="pubXZ" href="pubGoods.html">发布闲置</a>
+			                    </li>
+			                    <li>
+			                        <a id="pubQG" href="wantGoods.html">发布求购</a>
+			                    </li>
+			                    
+			                </ul>
+            		</div>
+            
+         
+		                
             
                 	<button class="btn btn-primary" id="username"><i class="fa fa-user-o"></i> <span id="user"></span></button> 
                 	<a class="exit" data-toggle="modal" href="#myModal">退出</a>
@@ -53,9 +72,6 @@
                 	<button id="register" type="button" class="btn btn-primary" hidden="hidden">注册</button>
             	</div>
             	
-                
-             
-           
             </div>
          
         </nav>
@@ -98,7 +114,7 @@
                 </li>
             </ul>
             <div class="want-center">
-                <p>求购中心</p>
+                <div>求购中心</div>
             </div>
             <div class="about-us">
                 <a href="#">关于我们</a>-<a href="#">联系我们</a>

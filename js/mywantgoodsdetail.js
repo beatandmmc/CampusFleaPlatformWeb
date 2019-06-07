@@ -36,7 +36,7 @@ $(document).ready(function() {
 function getItemDetail(itemId){
 	$.ajax({
     	//url :'http://39.107.247.211:8080/CampusFleaPlatform_war/goods/catelog',
-    	url :'http://192.168.43.213:8080/goods/itemDetail',
+    	url :'http://192.168.43.213:8080/wantgoods/wantItemDetail',
         type: 'GET',
         async:true,
         dataType: 'jsonp',
@@ -44,15 +44,14 @@ function getItemDetail(itemId){
         timeout: 5000,
         data: {
              "itemId" : itemId,
-             "sessionId":1
+             "sessionId": 1
         },
         success: function(data) {
             console.log(data.data);
             var info = data.data;
             $('.imgname').html(info.name);
             $('.describle').html(info.describle);
-            $('.realPrice').html(info.realPrice);
-            $('.newPrice').html(info.price);
+          
             $('.centerbox').attr('item-id',itemId);
             $("#addCart").html(itemId);
             imgURLs = data.data.imgUrl;
@@ -176,7 +175,7 @@ $('#goods-edit').click(function(){
 //擦亮
 $('#goods-up').click(function(){
 	$.ajax({
-		url :'http://192.168.43.213:8080/goods/polish',
+		url :'http://192.168.43.213:8080/wantgoods/polishWant',
 		type: 'GET',
 		async:true,
 		dataType: 'jsonp',
@@ -186,8 +185,8 @@ $('#goods-up').click(function(){
 			"itemId":$('.centerbox').attr('item-id')
 		},
 		success:function(data) {
-			console.log(data);
-			if(data.codde=="true"){
+			console.log(data.code);
+			if(data.code == "true"){
 				alert("擦亮成功！");
 			}else{
 				console.log("擦亮失败!");
