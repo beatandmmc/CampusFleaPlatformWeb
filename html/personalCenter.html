@@ -7,7 +7,7 @@
 		<link rel="stylesheet" href="../css/font-awesome.min.css" />
 		<link rel="stylesheet" type="text/css" href="../css/iconfont.css" />
 		<link rel="stylesheet" type="text/css" href="../css/personalCenter.css" />
-		<link rel="stylesheet" href="../css/buycart.css"/>
+		<link rel="stylesheet" href="../css/buycart-personal.css"/>
 		<style>
 			.container{padding-top:10px}
 			body {
@@ -90,9 +90,11 @@
 				font-size: 20px;
 			}
 			.submit-info{
-				margin: 20px 0 0 140px;
+				margin: 20px 0 0 100px;
 			}
-
+			.close-info{
+				margin: 20px 0 0 20px;
+			}
 			tbody th{
 				text-align: center;
 			}
@@ -149,12 +151,6 @@
 		<!-----header结束------->
 
 		<div class="header">
-			<!--<div class="bar">-->
-				<!--<div class="w1200">-->
-					<!--<span class="l">xxx网<font>用户中心</font></span>-->
-					<!--<span class="r"><a href="#"><i class="icon iconfont icon-dianyuan"></i>退出</a></span>-->
-				<!--</div>-->
-			<!--</div>-->
 			<div class="user-info">
 				<div class="w1200">
 					<div class="user-headface">
@@ -335,14 +331,15 @@
 							</div>
 						</div>
 						<div class="form-group">
-							<label for="class" class="col-sm-2 col-md-2 control-label">专业</label>
+							<label for="speciality" class="col-sm-2 col-md-2 control-label">专业</label>
 							<div class="col-sm-8 col-md-8">
-								<input type="text" class="form-control" id="class" placeholder="请输入专业名称">
+								<input type="text" class="form-control" id="speciality" placeholder="请输入专业名称">
 							</div>
 						</div>
 						<div class="form-group">
 							<div class="col-sm-offset-2 col-sm-10">
-								<button type="submit" class="btn btn-success btn-lg submit-info">保存信息</button>
+								<button type="button" class="btn btn-success btn-lg submit-info">保存信息</button>
+								<button type="button" class="btn btn-default  btn-lg close-info" onclick="myConfirm()">关闭</button>
 							</div>
 						</div>
 					</form>

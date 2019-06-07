@@ -44,8 +44,7 @@ function getItemDetail(itemId){
         jsonp: 'callback',
         timeout: 5000,
         data: {
-             "itemId" : itemId,
-             "sessionId":1
+             "itemId" : itemId
         },
         success: function(data) {
             console.log(data.data);

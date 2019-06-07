@@ -19,7 +19,7 @@ var fileArr = [];
         }
         //console.log($('#describle').val());
 //        formData.append("userId",$('#userId').val());
-		formData.append("sessionId",$.cookie('sessionId'));
+		formData.append("sessionId",typeof($.cookie('sessionId')) == 'string' ? $.cookie('sessionId') : '');
         formData.append("goodsName",$('#goodsName').val());
         formData.append("price",$('#price').val());
         formData.append("realPrice",$('#realPrice').val());

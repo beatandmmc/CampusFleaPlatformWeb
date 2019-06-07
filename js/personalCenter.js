@@ -96,14 +96,12 @@ function queryBC(){
 }
 function getItemDetail(itemId){
 	//alert(itemId);
-	var itemId = itemId;
 	//alert(itemId);
 	window.location.href="../html/mygoodsdetail.html?itemId="+itemId;
 	//alert(id)
 }
 function getwantItemDetail(itemId){
 	//alert(itemId);
-	var itemId = itemId;
 	//alert(itemId);
 	window.location.href="../html/mywantgoodsdetail.html?itemId="+itemId;
 	//alert(id)
@@ -372,3 +370,52 @@ function delGoods(goodsArr) {
 	});
 	//删除商品ajax结束
 }
+var picObj = $('#up-pic');
+$('.submit-info').click(function(){
+	var formData = new FormData();
+
+	//console.log($('#up-pic')[0].files[0]);
+	formData.append("file",$('#up-pic')[0].files[0]);
+	formData.append("sessionId",typeof($.cookie('sessionId')) == 'string' ? $.cookie('sessionId') : '');
+	formData.append("name",$('#name').val());
+	formData.append("QQ",$('#QQ').val());
+	formData.append("school",$('#school').val());
+	formData.append("speciality",$('#speciality').val());
+	$.ajax({
+		url :'http://192.168.43.213:8080/goods/publishGoods',
+		type: 'POST',
+		async: true,
+		data:formData,
+		processData: false,
+		contentType: false,
+		success: function (data) {
+			alert('修改成功！');
+			console.log(data);
+			$('.close-info').attr('data-dismiss','modal')
+
+		},
+		error: function () {
+			console.log("上传error")
+		}
+	});
+});
+
+
+function myConfirm(){
+	var r=confirm("此操作不保存用户信息，确认关闭？");
+	if (r==true){
+		$('.close-info').attr('data-dismiss','modal')
+	}
+	else{
+		$('.close-info').attr('data-dismiss','')
+	}
+}
+
+
+
+
+
+
+
+
+
