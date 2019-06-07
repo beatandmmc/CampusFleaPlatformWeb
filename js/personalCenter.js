@@ -382,14 +382,19 @@ $('.submit-info').click(function(){
 	formData.append("school",$('#school').val());
 	formData.append("speciality",$('#speciality').val());
 	$.ajax({
-		url :'http://192.168.43.213:8080/goods/publishGoods',
+		url :'http://192.168.43.213:8080/user/modifyUser',
 		type: 'POST',
 		async: true,
 		data:formData,
 		processData: false,
 		contentType: false,
 		success: function (data) {
-			alert('修改成功！');
+			if(data.code == "true"){
+				alert('修改成功！');
+			}else{
+				console.log("擦亮失败!");
+			}
+			
 			console.log(data);
 			$('.close-info').attr('data-dismiss','modal')
 

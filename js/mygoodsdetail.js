@@ -186,7 +186,7 @@ $('#goods-up').click(function(){
 		},
 		success:function(data) {
 			console.log(data);
-			if(data.codde=="true"){
+			if(data.code=="true"){
 				alert("擦亮成功！");
 			}else{
 				console.log("擦亮失败!");
@@ -201,7 +201,7 @@ $('#goods-up').click(function(){
 //删除
 $('#goods-del').click(function(){
 	$.ajax({
-		url :'http://192.168.43.213:8080/shopping/buyerCart',
+		url :'http://192.168.43.213:8080/goods/delGoods',
 		type: 'GET',
 		async:true,
 		dataType: 'jsonp',
@@ -211,7 +211,12 @@ $('#goods-del').click(function(){
 			"itemId":$('.centerbox').attr('item-id')
 		},
 		success:function(data) {
-			console.log(data);
+			if(data.code=="true"){
+				alert("下架成功！");
+				window.location.href = "../html/personalCenter.html";
+			}else{
+				console.log("下架失败!");
+			}
 
 		},
 		error:function(){
