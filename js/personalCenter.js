@@ -416,8 +416,35 @@ function myConfirm(){
 	}
 }
 
-
-
+//请求用户信息填充
+$('.user-modify').click(function(){
+	$.ajax({
+		//url :'http://39.107.247.211:8080/CampusFleaPlatform_war/goods/catelog',
+		url: 'http://192.168.43.213:8080/shopping/delCart',
+		type: 'GET',
+		async: true,
+		dataType: 'jsonp',
+		jsonp: 'callback',
+		timeout: 5000,
+		data: {
+			"sessionId": typeof($.cookie('sessionId')) == 'string' ? $.cookie('sessionId') : ''
+		},
+		success: function(data) {
+			console.log(data);
+			$('#name').val(data.name);
+			$('#QQ').val(data.QQ);
+			$('#school').val(data.school);
+			$('#speciality').val(data.speciality);
+			//头像的src不为空
+			if(data.src){
+				$('#head-pic').attr('src',data.src)
+			}
+		},
+		error: function() {
+			console.log("请求用户信息error")
+		}
+	});
+});
 
 
 
