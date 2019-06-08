@@ -394,7 +394,6 @@ $('.submit-info').click(function(){
 			}else{
 				console.log("擦亮失败!");
 			}
-			
 			console.log(data);
 			$('.close-info').attr('data-dismiss','modal')
 
