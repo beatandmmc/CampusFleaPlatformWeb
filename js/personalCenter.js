@@ -420,7 +420,7 @@ function myConfirm(){
 $('.user-modify').click(function(){
 	$.ajax({
 		//url :'http://39.107.247.211:8080/CampusFleaPlatform_war/goods/catelog',
-		url: 'http://192.168.43.213:8080/shopping/delCart',
+		url: 'http://192.168.43.213:8080/user/getUserInfo',
 		type: 'GET',
 		async: true,
 		dataType: 'jsonp',
@@ -431,13 +431,14 @@ $('.user-modify').click(function(){
 		},
 		success: function(data) {
 			console.log(data);
-			$('#name').val(data.name);
-			$('#QQ').val(data.QQ);
-			$('#school').val(data.school);
-			$('#speciality').val(data.speciality);
+			$('#name').val(data.data.username);
+			$('#QQ').val(data.data.qq);
+			$('#school').val(data.data.school);
+			$('#speciality').val(data.data.speciality);
 			//头像的src不为空
-			if(data.src){
-				$('#head-pic').attr('src',data.src)
+			if(data.data.imgUrl){
+				var src = data.data.imgUrl;
+				$('#head-pic').attr('src',src.slice(0,src.length-1))
 			}
 		},
 		error: function() {
