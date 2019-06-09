@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>发布求购</title>
+    <link rel="stylesheet" href="../css/font-awesome.min.css" />
+    <link rel="stylesheet" href="../css/userhome.css" />
+    <link rel="stylesheet" href="../css/user.css" />
+    <script type="text/javascript" src="../js/jquery.min.js"></script>
+    <script type="text/javascript" src="../js/jquery.cookie.js"></script>
+    <!-- bootstrap -->
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <script type="text/javascript" src="../js/bootstrap.min.js"></script>
+
+    <style>
+        .container{padding-top:10px}
+        body {
+            padding-top: 60px;
+        }
+        .xust-header{
+            padding: 5px 30px 5px 0;
+            background: #ffffff;
+            box-shadow: #666 0 0 10px;
+        }
+        .btn-download {
+            margin-top: 7px;
+            padding-right: 20px;
+        }
+        .btn-download button {
+            margin-right: 10px;
+        }
+        .xust-title {
+            color: #000000;
+            font-size: 22px;
+            font-weight: bold;
+        }
+        .xust{
+            color: #007bff;
+            padding-left: 4px;
+            font-size: 24px;
+        }
+        .xust-en {
+            color: #545b62;
+            font-size: 16px;
+            padding-left: 5px;
+            margin-right: 50px;
+        }
+        .my-home{
+            color: #007bff;
+            font-size: 28px;
+        }
+        .describle{
+            /*background: rgba(232,232,232,0.5);*/
+            padding: 10px;
+            font-size: 18px;
+            letter-spacing: 2px;
+            color: #292929;
+            text-indent: 2em;
+            font-family: "宋体";
+        }
+
+    </style>
+</head>
+<body>
+
+<div id="cover" style="min-height: 639px;">
+    <!-----header部分------->
+    <div class="container-fluid">
+        <!--顶部菜单栏-->
+        <div class="row xust-top">
+            <nav class="navbar navbar-fixed-top xust-header" role="navigation" id="xust-nav">
+                <div class="navbar-header">
+                    <a class="navbar-brand xust-title" href="homepage.html"><i class="fa fa-home my-home" aria-hidden="true"></i><span class="xust">西科大 </span>二手工坊 <span class="xust-en">xust.market</span></a>
+                </div>
+
+
+                <div class="navbar-right btn-download">
+                    <div class="done">
+                        <button class="btn btn-primary" id="username"><i class="fa fa-user-o"></i> <span id="user"></span></button>
+                        <a class="exit" data-toggle="modal" href="#myModal">退出</a>
+                    </div>
+                    <div class="undone">
+                        <button id="userSubmit" type="button" class="btn btn-primary" hidden="hidden">登录</button>
+                        <button id="register" type="button" class="btn btn-primary" hidden="hidden">注册</button>
+                    </div>
+                </div>
+
+            </nav>
+        </div>
+    </div>
+    <!-----header结束------->
+
+    <!--
+            作者：mmc
+            描述：发布物品
+    -->
+    <div id="user_content" style="margin-left: auto;">
+        <div class="basic">
+            <form style="margin-left: auto;" method="post" role="form" enctype="multipart/form-data" id="file-form">
+                <h1 style="margin-left: 240px;">编辑求购</h1>
+                <hr style="margin-right: 40px;" />
+                <div class="changeinfo">
+                    <!--<input type="text" name="userId" value="1507020102" id="userId"/>-->
+                    <span >求购物品:</span>
+                    <input class="in_info" type="text" name="goodsName" id="goodsName" placeholder="请输入物品名" value="小米手环"/>
+
+                </div>
+                <div class="changeinfo">
+                    <span>物品类别:</span>
+                    <select class="in_info" name="catelogId" id="catelogId"  style="width: 188px;font-size: 15px;">
+                        <option value="1" >闲置数码</option>
+                        <option value="2">校园代步</option>
+                        <option value="3">电器日用</option>
+                        <option value="4">图书教材</option>
+                        <option value="5">美妆衣物</option>
+                        <option value="6">运动棋牌</option>
+                        <option value="7">票券小物</option>
+                        <option value="-1">其它</option>
+                    </select>
+                </div>
+                <div class="changeinfo" id="dir">
+                    <span>求购描述:</span>
+                    <div class="sha">
+                        <div class="publ">
+                            <div class="pub_con">
+                                <div class="text_goods">
+                                    <!--<input type="text" style="vertical-align:top;outline:none;" name="describle" id="describle" class="goodsdescribe" value="9成新，无损坏。"/>-->
+                                    <textarea ntype="text" style="vertical-align:top;outline:none;" name="describle" id="describle" placeholder="商品描述信息" class="goodsdescribe" style="OVERFLOW:hidden"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <br />
+
+                <div class="changeinfo">
+                    <span>求购图片:</span>
+                    <div class="show_pic" style="margin-top: -50px;">
+                        <div class="uploadImgBtn" id="uploadImgBtn">
+                            <input class="uploadImg" type="file" name="fileUploads" multiple>
+                        </div>
+                        <div class="pic_box">
+
+                        </div>
+                    </div>
+                </div>
+
+                <hr />
+                <button type="button" class="setting-save" style="margin-top: 20px;margin-left:250px;background-color: blue;">保存修改</button>
+            </form>
+        </div>
+    </div>
+</div>
+</div>
+<script src="../js/editwantgoods.js"></script>
+</body>
+</html>

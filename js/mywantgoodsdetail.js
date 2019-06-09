@@ -169,7 +169,7 @@ $("#register").click(function(){
 //编辑
 $('#goods-edit').click(function(){
 	var itemId = $('.centerbox').attr('item-id');
-	window.location.href = '../html/editGoods.html?itemId='+itemId;
+	window.location.href = '../html/editWantGoods.html?itemId='+itemId;
 });
 //擦亮
 $('#goods-up').click(function(){
