@@ -250,13 +250,14 @@ $(document).on("scroll",function(){
 //  location.href = '../html/pubGoods.html'
 //});
 $("#quit").click(function(){
-		window.location.href="homepage.html";
+		
 		//清除所有cookie函数
 //		var keys = document.cookie.match(/[^ =;]+(?=\=)/g);
 //		if(keys) {
 //			for(var i = keys.length; i--;)
 //			document.cookie = keys[i] + '=0;expires=' + new Date(0).toUTCString()
 //		}
+	
 	$.ajax({
         //url :'http://39.107.247.211:8080/CampusFleaPlatform_war/goods/catelog',
         url :'http://192.168.43.213:8080/user/logout',
@@ -270,17 +271,21 @@ $("#quit").click(function(){
         },
         success: function(data) {
         	if(data.code == "true"){
-        		$.cookie('sessionId', '', { expires: -1 });
-				alert("退出成功！");
-				
+        		
+				//alert("退出成功！");
+				$.cookie('sessionId', '', { expires: -1 });
+				//$("#fabu").css("display","none");
+				window.location.href="homepage.html";
 			}else{
 				console.log("退出失败!");
+				$.cookie('sessionId', '', { expires: -1 });
 			}
         },
         error:function(){
             console.log("error")
         }
     });
+    
 	
 });
 $("#userSubmit").click(function(){
