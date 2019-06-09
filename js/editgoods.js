@@ -1,56 +1,3 @@
-//新上传的图片
-var fileArr = [];
-var formData= new FormData();
-$('#uploadImgBtn').on('change','.uploadImg',function(){
-    var $file = $(".uploadImg");  //所有input file组
-    var fileObj = $file[$file.length-2];  //获得最新添加了file的input(倒数第二个)
-    var files = fileObj.files;
-    var n = files.length;   //获取当前input的file数
-    if(n>0){
-        for(var i=0;i<n;i++){
-            fileArr.push(files[i])
-        }
-    }
-    console.log(fileArr)
-});
-
-
-//上传信息
-$('.setting-save').click(function(){
-    //获取旧图片
-
-
-    //获取新图片
-    //遍历fileArr，把文件全部交给formData的files属性
-    for(var i=0;i<fileArr.length;i++){
-        formData.append('files',fileArr[i]);
-    }
-    //console.log($('#describle').val());
-//        formData.append("userId",$('#userId').val());
-    formData.append("sessionId",$.cookie('sessionId'));
-    formData.append("goodsName",$('#goodsName').val());
-    formData.append("price",$('#price').val());
-    formData.append("realPrice",$('#realPrice').val());
-    formData.append("catelogId",$('#catelogId').val());
-    formData.append("describle",$('#describle').val());
-    $.ajax({
-        url :'http://192.168.43.213:8080/goods/publishGoods',
-        type: 'POST',
-        async: true,
-        data:formData,
-        processData: false,
-        contentType: false,
-        success: function (data) {
-            alert('发布成功！')
-            window.location.href="homepage.html";
-            console.log(data);
-        },
-        error: function () {
-            console.log("上传error")
-        }
-    });
-});
-
 $(document).ready(function () {
     var str = window.location.href;
     var itemId = str.split("?itemId=")[1];
@@ -65,7 +12,7 @@ $(document).ready(function () {
         dataType: 'jsonp',
         jsonp: 'callback',
         data: {
-            "itemId":itemId
+            "itemId":'1'
         },
         success:function(data) {
             console.log(data);
@@ -78,7 +25,11 @@ $(document).ready(function () {
             $('#catelogId').val(info.catelogId);
             imgURLs = data.data.imgUrl;
             var arr = data.data.imgUrl.split(";");
-            for (var i = 0; i < arr.length-1; i++) {
+            //获取旧图片的个数和旧图片数组
+            oldImgCount = arr.length-1;
+            oldImgArr = arr;
+            oldImgArr.splice(oldImgCount,1);
+            for (var i = 0; i < oldImgCount; i++) {
                 //alert(arr[i]);
                 var div = document.createElement("div"),
                     img = document.createElement("img"),
@@ -139,15 +90,87 @@ $(document).ready(function () {
             var newInput = '<input class="uploadImg test" type="file" name="fileUploads" multiple>';
             $(this).after($(newInput));
         });
-    })
-});
+    });
+
+    var oldImgCount;
+    var oldImgArr = [];
+
+//新上传的图片
+    var fileArr = [];
+    var formData= new FormData();
+    $('#uploadImgBtn').on('change','.uploadImg',function(){
+        var $file = $(".uploadImg");  //所有input file组
+        var fileObj = $file[$file.length-2];  //获得最新添加了file的input(倒数第二个)
+        var files = fileObj.files;
+        var n = files.length;   //获取当前input的file数
+        if(n>0){
+            for(var i=0;i<n;i++){
+                fileArr.push(files[i])
+            }
+        }
+        console.log(fileArr)
+    });
+
+
+//上传信息
+    $('.setting-save').click(function(){
+        //获取旧图片
+        var oldImgStr = oldImgArr.join(';');
+        console.log(oldImgStr);
+        formData.append("urls",oldImgStr);
+
+        //获取新图片
+        //遍历fileArr，把文件全部交给formData的files属性
+        for(var i=0;i<fileArr.length;i++){
+            formData.append('files',fileArr[i]);
+        }
+        //console.log($('#describle').val());
+//        formData.append("userId",$('#userId').val());
+        formData.append("sessionId",$.cookie('sessionId'));
+        formData.append("itemId",itemId);
+        formData.append("goodsName",$('#goodsName').val());
+        formData.append("price",$('#price').val());
+        formData.append("realPrice",$('#realPrice').val());
+        formData.append("catelogId",$('#catelogId').val());
+        formData.append("describle",$('#describle').val());
+        $.ajax({
+            url :'http://192.168.43.213:8080/goods/publishGoods',
+            type: 'POST',
+            async: true,
+            data:formData,
+            processData: false,
+            contentType: false,
+            success: function (data) {
+                alert('发布成功！')
+                window.location.href="homepage.html";
+                console.log(data);
+            },
+            error: function () {
+                console.log("上传error")
+            }
+        });
+    });
+
 
 //删除图片
 //两种方式，判断旧图片数组的长度实现
-$('.pic_box').on('click', '.del', function () {
-    var index= $(".pic").index($(this).parent());
-    console.log(index);
-    fileArr = fileArr.splice(index,1);
-    $(this).parent().remove();
-    console.log(fileArr)
+    $('.pic_box').on('click', '.del', function () {
+        var index= $(".pic").index($(this).parent());
+        console.log('index='+index);
+        console.log('oldImgCount='+oldImgCount);
+        console.log('oldImgArr='+oldImgArr);
+
+        //当前元素下标属于旧图片
+        if(index < oldImgCount){
+            oldImgArr.splice(index,1);
+            oldImgCount--;
+            console.log(oldImgArr)
+        } else {
+            console.log(index-oldImgCount);
+            fileArr.splice(index-oldImgCount,1);
+            console.log(fileArr)
+        }
+        $(this).parent().remove();
+    });
+
 });
