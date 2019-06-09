@@ -391,6 +391,7 @@ $('.submit-info').click(function(){
 		success: function (data) {
 			if(data.code == "true"){
 				alert('修改成功！');
+				$('.submit-info').attr('data-dismiss','modal');
 			}else{
 				console.log("擦亮失败!");
 			}
@@ -400,7 +401,7 @@ $('.submit-info').click(function(){
 
 		},
 		error: function () {
-			console.log("上传error")
+			console.log("修改信息错误")
 		}
 	});
 });
