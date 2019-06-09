@@ -45,7 +45,10 @@
             <div class="navbar-right btn-download">
             	<!-- 购物车入口-->
                 <div class="buycart-box">
-                    <button id="buycart-btn" class='btn btn-info'><i class="fa fa-opencart"></i> 购物车</button>
+                    <div class="buycart-icon">
+                        <i class="fa fa-shopping-cart"></i>
+                    </div>
+                    <div class="buycart-font"></div>
                 </div>
                 <!-- 登录状态-->
                 
@@ -159,7 +162,6 @@
 <!-- 模态框-->
 <div id="myModal" class="modal fade" role="dialog">
     <div class="modal-dialog">
-
         <!-- 模态内容 -->
         <div class="modal-content">
             <div class="modal-header">
@@ -182,6 +184,7 @@
 <script src="../js/bootstrap.min.js"></script>
 <script src="../js/template-web.js"></script>
 <script src="../js/homepage.js"></script>
+<script src="../js/common-download.js"></script>
 <script id="type_goods_temp" type="text/html">
     {{each model}}
     <div class="col-md-3 col-sm-3 col-xs-6">

@@ -178,10 +178,31 @@
 
 </div>
 <!-----商品详情部分结束------->
+<!-- 模态框-->
+<div id="myModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <!-- 模态内容 -->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">账号退出</h4>
+            </div>
+            <div class="modal-body">
+                <p>您确定要登出该账号吗？</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                <button type="button" id="quit" class="btn btn-primary">退出</button>
+            </div>
+        </div>
+
+    </div>
+</div>
 
 <script src="../js/common.js"></script>
 <script type="text/javascript" src="../js/jquery.flexText.js"></script>
 <script src="../js/mywantgoodsdetail.js"></script>
+<script src="../js/common-download.js"></script>
 
 <script type="text/javascript">
     $(function () {

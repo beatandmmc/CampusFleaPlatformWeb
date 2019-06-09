@@ -7,7 +7,7 @@
 }
 .btn-download {
     margin-top: 7px;
-    margin-right: 120px;
+    margin-right:20px;
     position: relative;
 }
 .btn-download button {
@@ -60,12 +60,6 @@
     }
 }
 
-/*购物车css*/
-.buycart-box{
-    position: absolute;
-    top: 0;
-    right: -110px;
-}
 
 .type-name>div{
     position: absolute;

@@ -417,11 +417,14 @@ function myConfirm(){
 	}
 }
 
-//请求用户信息填充
-$('.user-modify').click(function(){
+
+
+
+//用户信息填充
+function queryUserInfo(){
 	$.ajax({
-		//url :'http://39.107.247.211:8080/CampusFleaPlatform_war/goods/catelog',
-		url: 'http://192.168.43.213:8080/user/getUserInfo',
+		url :'http://39.107.247.211:8080/CampusFleaPlatform_war/user/getUserInfo',
+		//url: 'http://192.168.43.213:8080/user/getUserInfo',
 		type: 'GET',
 		async: true,
 		dataType: 'jsonp',
@@ -432,6 +435,16 @@ $('.user-modify').click(function(){
 		},
 		success: function(data) {
 			console.log(data);
+			//头部信息填充
+			$('.head-username').html(data.data.username);
+			$('.head-account').html(data.data.username);
+			//个人资料栏填充
+			$('.zl-username').val(data.data.username);
+			$('.zl-QQ').val(data.data.qq);
+			$('.zl-school').val(data.data.school);
+			$('.zl-speciality').val(data.data.speciality);
+
+
 			$('#name').val(data.data.username);
 			$('#QQ').val(data.data.qq);
 			$('#school').val(data.data.school);
@@ -439,6 +452,7 @@ $('.user-modify').click(function(){
 			//头像的src不为空
 			if(data.data.imgUrl){
 				var src = data.data.imgUrl;
+				$('.user-headImg').attr('src',src.slice(0,src.length-1));
 				$('#head-pic').attr('src',src.slice(0,src.length-1))
 			}
 		},
@@ -446,8 +460,17 @@ $('.user-modify').click(function(){
 			console.log("请求用户信息error")
 		}
 	});
-});
+}
 
+$('.add-address-btn').click(function(){
+	var address_title = $('#address-title').val();
+	var address = $('#address').val();
+	var address_html = template('my-address-temp', {
+		address_title: address_title,
+		address: address
+	});
+	$('.address-list').append(address_html);
+});
 
 
 

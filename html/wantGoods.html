@@ -49,14 +49,13 @@
             color: #007bff;
             font-size: 28px;
         }
-        .describle{
+        #describle{
             /*background: rgba(232,232,232,0.5);*/
             padding: 10px;
-            font-size: 18px;
+            font-size: 16px;
             letter-spacing: 2px;
             color: #292929;
             text-indent: 2em;
-            font-family: "宋体";
         }
 
     </style>
@@ -151,7 +150,27 @@
         </div>
     </div>
 </div>
+<!-- 模态框-->
+<div id="myModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <!-- 模态内容 -->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">账号退出</h4>
+            </div>
+            <div class="modal-body">
+                <p>您确定要登出该账号吗？</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                <button type="button" id="quit" class="btn btn-primary">退出</button>
+            </div>
+        </div>
+
+    </div>
 </div>
 <script src="../js/wantGoods.js"></script>
+<script src="../js/common-download.js"></script>
 </body>
 </html>

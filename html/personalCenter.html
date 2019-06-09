@@ -120,6 +120,13 @@
 				margin-top: 50px;
 				/*margin-left: 1px;*/
 			}
+			.add-address{
+				padding-top: 20px;
+			}
+			.add-address-btn{
+				margin-left: 700px;
+				margin-bottom: 20px;
+			}
 		</style>
 	</head>
 	<body>
@@ -137,7 +144,7 @@
 					<div class="navbar-right btn-download">
 						<div class="done">
 							<button class="btn btn-success" id="username"><i class="fa fa-user-o"></i><span id="user"></span></button>
-							<a class="exit" data-toggle="modal" href="#myModal">退出</a>
+							<a class="exit" data-toggle="modal" href="#exitModel">退出</a>
 						</div>
 						<div class="undone">
 							<button id="userSubmit" type="button" class="btn btn-success" hidden="hidden">登录</button>
@@ -154,13 +161,12 @@
 			<div class="user-info">
 				<div class="w1200">
 					<div class="user-headface">
-						<img src="../images/user_face.jpg"/>
+						<img class="user-headImg" src="../images/user_face.jpg"/>
 					</div>
 					<div class="user-account">
-						<p class="tip">下午好，Tom</p>
+						<p class="tip">您好，<span class="head-username"></span></p>
 						<p class="account">
-							<span>帐户名：Tom</span>
-							<span>用户：tomandjerry</span>
+							<span>帐户：<span class="head-account"></span></span>
 						</p>
 					</div>
 					<!--<a class="exit" data-toggle="modal" href="#myModal">退出</a>-->
@@ -224,28 +230,36 @@
 					</div>
 					<!-- 我的求购-->
 					<div class="tab-pane row fade goods-list" id="qiugou">
-						
-						<!--<div class="col-md-3 col-sm-3 col-xs-6">
-							<div class="card col-md-10 col-sm-10 col-xs-10 " onclick="getItemDetail($(this).attr('data-id'))" data-id={{$value.id}} goods-type = '1'>
-								<div class="card-image">
-									<img src="../images/4.jpg" />
-								</div>
-								<div class="card-content">
-									<h4 class="name">求购一只刘瑞猪</h4>
-									<div class="row">
-										<span class="col-md-5 col-xs-5 col-sm-5 catelog">其它闲置</span>
-										<span class="col-md-6 col-xs-5 col-sm-7 time text-right">2019.4.1</span>
-									</div>
-								</div>
-								<div class="selled col-md-12 col-sm-12 col-xs-12 ">
-									<div class="sell-text">已售出</div>
-								</div>
-							</div>
-						</div>-->
+
 					</div>
 
 					<div class="tab-pane row fade goods-list" id="dizhi">
-						dizhi
+						<form class="form-horizontal" role="form">
+							<div class="form-group address-list">
+								<label class="col-sm-2 control-label">学校</label>
+								<div class="col-sm-10">
+									<p class="form-control-static">陕西省西安市临潼区斜口街道西安科技大学</p>
+								</div>
+								<label class="col-sm-2 control-label">家</label>
+								<div class="col-sm-10">
+									<p class="form-control-static">陕西省咸阳市乾县峰阳镇</p>
+								</div>
+							</div>
+
+								<div class="add-address">
+									<div class="form-group">
+										<label for="address" class="col-sm-2 col-md-2 control-label">新增地址</label>
+										<div class="col-sm-8 col-md-8">
+											<input type="text" class="form-control" id="address-title" placeholder="新地址名称">
+											<br>
+											<input type="text" class="form-control" id="address" placeholder="请输入新地址">
+										</div>
+									</div>
+								</div>
+							<button type="button" class="btn btn-success add-address-btn">新增地址</button>
+
+						</form>
+
 					</div>
 					<div class="tab-pane row fade" id="buycart">
 						<div class="catbox">
@@ -283,7 +297,39 @@
 						</div>
 					</div>
 					<div class="tab-pane row fade" id="ziliao">
-						ziliao
+						<form class="form-horizontal" role="form">
+							<div class="form-group">
+								<label class="col-sm-2 control-label">用户名</label>
+								<div class="col-sm-10">
+									<p class="form-control-static zl-username">瑞雪东飞</p>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-2 control-label">手机号</label>
+								<div class="col-sm-10">
+									<p class="form-control-static zl-phone" >18729976004</p>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-2 control-label">QQ</label>
+								<div class="col-sm-10">
+									<p class="form-control-static zl-QQ">836773991</p>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-2 control-label">学校</label>
+								<div class="col-sm-10">
+									<p class="form-control-static zl-school">西安科技大学</p>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-2 control-label">专业</label>
+								<div class="col-sm-10">
+									<p class="form-control-static zl-speciality">通信工程</p>
+								</div>
+							</div>
+
+						</form>
 					</div>
 					<div class="tab-pane row fade" id="jilu">
 						jilu
@@ -347,6 +393,27 @@
 			</div>
 		</div>
 	</div>
+	<!-- 模态框-->
+	<div id="exitModel" class="modal fade" role="dialog">
+		<div class="modal-dialog">
+			<!-- 模态内容 -->
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+					<h4 class="modal-title">账号退出</h4>
+				</div>
+				<div class="modal-body">
+					<p>您确定要登出该账号吗？</p>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+					<button type="button" id="quit" class="btn btn-primary">退出</button>
+				</div>
+			</div>
+
+		</div>
+	</div>
+
 	<script src="../js/jquery.min.js"></script>
 	<script src="../js/jquery.cookie.js"></script>
 	<script src="../js/bootstrap.min.js"></script>
@@ -422,7 +489,11 @@
 		</tr>
 		{{/each}}
 	</script>
-
+	<script id="my-address-temp" type="text/html">
+		<label class="col-sm-2 control-label">{{address_title}}</label>
+		<div class="col-sm-10">
+			<p class="form-control-static">{{address}}</p>
+		</div>
+	</script>
 	</body>
-
 </html>
