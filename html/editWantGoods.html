@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>编辑商品</title>
+    <title>发布求购</title>
     <link rel="stylesheet" href="../css/font-awesome.min.css" />
     <link rel="stylesheet" href="../css/userhome.css" />
     <link rel="stylesheet" href="../css/user.css" />
@@ -11,51 +11,53 @@
     <!-- bootstrap -->
     <link rel="stylesheet" href="../css/bootstrap.min.css">
     <script type="text/javascript" src="../js/bootstrap.min.js"></script>
-	
+
     <style>
         .container{padding-top:10px}
         body {
-    padding-top: 60px;
-}
-.xust-header{
-    padding: 5px 30px 5px 0;
-    background: #ffffff;
-    box-shadow: #666 0 0 10px;
-}
-.btn-download {
-    margin-top: 7px;
-    padding-right: 20px;
-}
-.btn-download button {
-    margin-right: 10px;
-}
-.xust-title {
-    color: #000000;
-    font-size: 22px;
-    font-weight: bold;
-}
-.xust{
-    color: #007bff;
-    padding-left: 4px;
-    font-size: 24px;
-}
-.xust-en {
-    color: #545b62;
-    font-size: 16px;
-    padding-left: 5px;
-    margin-right: 50px;
-}
-.my-home{
-	color: #007bff;
-	font-size: 28px;
-}
-#describle{
-	padding: 10px;
-	font-size: 16px;
-	letter-spacing: 2px;
-	color: #292929;
-	text-indent: 2em;
-}
+            padding-top: 60px;
+        }
+        .xust-header{
+            padding: 5px 30px 5px 0;
+            background: #ffffff;
+            box-shadow: #666 0 0 10px;
+        }
+        .btn-download {
+            margin-top: 7px;
+            padding-right: 20px;
+        }
+        .btn-download button {
+            margin-right: 10px;
+        }
+        .xust-title {
+            color: #000000;
+            font-size: 22px;
+            font-weight: bold;
+        }
+        .xust{
+            color: #007bff;
+            padding-left: 4px;
+            font-size: 24px;
+        }
+        .xust-en {
+            color: #545b62;
+            font-size: 16px;
+            padding-left: 5px;
+            margin-right: 50px;
+        }
+        .my-home{
+            color: #007bff;
+            font-size: 28px;
+        }
+        .describle{
+            /*background: rgba(232,232,232,0.5);*/
+            padding: 10px;
+            font-size: 18px;
+            letter-spacing: 2px;
+            color: #292929;
+            text-indent: 2em;
+            font-family: "宋体";
+        }
 
     </style>
 </head>
@@ -70,6 +72,8 @@
                 <div class="navbar-header">
                     <a class="navbar-brand xust-title" href="homepage.html"><i class="fa fa-home my-home" aria-hidden="true"></i><span class="xust">西科大 </span>二手工坊 <span class="xust-en">xust.market</span></a>
                 </div>
+
+
                 <div class="navbar-right btn-download">
                     <div class="done">
                         <button class="btn btn-primary" id="username"><i class="fa fa-user-o"></i> <span id="user"></span></button>
@@ -85,26 +89,21 @@
         </div>
     </div>
     <!-----header结束------->
+
+    <!--
+            作者：mmc
+            描述：发布物品
+    -->
     <div id="user_content" style="margin-left: auto;">
         <div class="basic">
             <form style="margin-left: auto;" method="post" role="form" enctype="multipart/form-data" id="file-form">
-                <h1 style="margin-left: 240px;">编辑物品</h1>
+                <h1 style="margin-left: 240px;">编辑求购</h1>
                 <hr style="margin-right: 40px;" />
                 <div class="changeinfo">
                     <!--<input type="text" name="userId" value="1507020102" id="userId"/>-->
-                    <span >物品名称:</span>
-                    <input class="in_info" type="text" name="goodsName" id="goodsName" placeholder="请输入物品名"/>
+                    <span >求购物品:</span>
+                    <input class="in_info" type="text" name="goodsName" id="goodsName" placeholder="请输入物品名" value="小米手环"/>
 
-                </div>
-                <div class="changeinfo">
-                    <span>出售价格:</span>
-                    <input class="in_info" type="text" name="price" id="price" placeholder="请输入出售价格"/>
-
-                </div>
-                <div class="changeinfo">
-                    <span>购买价格:</span>
-                    <input class="in_info" type="text" name="realPrice" id="realPrice" placeholder="请输入商品原价"/>
-                    <!-- <span id="checkphone">(*选填,请如实填写)</span>-->
                 </div>
                 <div class="changeinfo">
                     <span>物品类别:</span>
@@ -116,10 +115,11 @@
                         <option value="5">美妆衣物</option>
                         <option value="6">运动棋牌</option>
                         <option value="7">票券小物</option>
+                        <option value="-1">其它</option>
                     </select>
                 </div>
                 <div class="changeinfo" id="dir">
-                    <span>商品描述:</span>
+                    <span>求购描述:</span>
                     <div class="sha">
                         <div class="publ">
                             <div class="pub_con">
@@ -134,7 +134,7 @@
                 <br />
 
                 <div class="changeinfo">
-                    <span>商品图片:</span>
+                    <span>求购图片:</span>
                     <div class="show_pic" style="margin-top: -50px;">
                         <div class="uploadImgBtn" id="uploadImgBtn">
                             <input class="uploadImg" type="file" name="fileUploads" multiple>
@@ -146,35 +146,12 @@
                 </div>
 
                 <hr />
-                <button type="button" class="setting-save" style="margin-top: 20px;margin-left:250px;background-color: blue;">发布物品</button>
+                <button type="button" class="setting-save" style="margin-top: 20px;margin-left:250px;background-color: blue;">保存修改</button>
             </form>
         </div>
     </div>
 </div>
-<!-- 模态框-->
-<div id="myModal" class="modal fade" role="dialog">
-    <div class="modal-dialog">
-        <!-- 模态内容 -->
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4 class="modal-title">账号退出</h4>
-            </div>
-            <div class="modal-body">
-                <p>您确定要登出该账号吗？</p>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
-                <button type="button" id="quit" class="btn btn-primary">退出</button>     
-                    <hr />
-                    <button type="button" class="setting-save" style="margin-top: 20px;margin-left:250px;background-color: blue;">保存修改</button>
-                </form>
-            </div>
-        </div>
-
-    </div>
 </div>
-<script src="../js/editgoods.js"></script>
-<script src="../js/common-download.js"></script>
+<script src="../js/editwantgoods.js"></script>
 </body>
 </html>

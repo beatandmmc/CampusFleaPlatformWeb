@@ -6,7 +6,7 @@ $(document).ready(function () {
     //填充商品信息
     $.ajax({
         //url :'http://192.168.43.213:8080/shopping/buyerCart',
-        url :'http://39.107.247.211:8080/CampusFleaPlatform_war/goods/itemDetail',
+        url :'http://39.107.247.211:8080/CampusFleaPlatform_war/wantgoods/wantItemDetail',
         type: 'GET',
         async:true,
         dataType: 'jsonp',
@@ -19,8 +19,6 @@ $(document).ready(function () {
             console.log(data.data);
             var info = data.data;
             $('#goodsName').val(info.name);
-            $('#price').val(info.price);
-            $('#realPrice').val(info.realPrice);
             $('#describle').val(info.describle);
             $('#catelogId').val(info.catelogId);
             imgURLs = data.data.imgUrl;
@@ -135,7 +133,7 @@ $(document).ready(function () {
         formData.append("catelogId",$('#catelogId').val());
         formData.append("describle",$('#describle').val());
         $.ajax({
-            url :'http://192.168.43.213:8080/goods/modifyGoods',
+            url :'http://192.168.43.213:8080/wantgoods/modifyWantGoods',
             type: 'POST',
             async: true,
             data:formData,
@@ -143,7 +141,7 @@ $(document).ready(function () {
             contentType: false,
             success: function (data) {
                 alert('修改成功！')
-                window.location.href="mygoodsdetail.html?itemId="+itemId;
+                window.location.href="mywantgoodsdetail.html?itemId="+itemId;
                 console.log(data);
             },
             error: function () {
